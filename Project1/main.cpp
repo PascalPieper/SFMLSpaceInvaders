@@ -4,9 +4,11 @@
 #include "IOReading.h"
 #include <iostream>
 #include "FilePath.h"
+#include "Thor/Resources.hpp"
 using namespace sf;
 int main()
 {
+
 	IOReading io;
 	FilePath path("test", "test");
 	int test = io.ProvideInt(&path, "test", 1);
