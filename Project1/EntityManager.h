@@ -5,6 +5,7 @@
 #include <vector>
 #include "Entity.h"
 #include "IManager.h"
+#include "PlayerCharacter.h"
 using namespace PP;
 class EntityManager
 {
@@ -18,9 +19,10 @@ public:
 	std::vector<Entity*> _Backgrounds;
 	std::vector<Entity*> _Colliders;
 	std::vector<Entity*> _Actors;
-	std::vector<Entity*> _Players;
+	std::vector<IPlayerCharacter*> _Players;
 public:
 	void CreateBackground(std::string EntityName, sf::Vector2f spawnPosition);
+	void CreatePlayer();
 	void CreateCollider(std::string EntityName);
 	void DeleteBackgrounds();
 	void DeleteAllEntities();

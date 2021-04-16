@@ -11,6 +11,12 @@ void EntityManager::CreateBackground(std::string EntityName, sf::Vector2f spawnP
 	_SharedBackgrounds.push_back(&Background);
 }
 
+void EntityManager::CreatePlayer()
+{
+	auto newPlayer = new PlayerCharacter();
+	_Players.push_back(newPlayer);
+}
+
 void EntityManager::CreateCollider(std::string EntityName)
 {
 	sf::Vector2f test{ 1.f, 2.f };
