@@ -1,19 +1,24 @@
 #include "Entity.h"
-using namespace PP;
+using namespace mat;
 
-Entity::Entity()
+
+Entity::Entity(GameManager* gm)
 {
+	pgm = gm;
+	thor::ResourceLoader<sf::Texture> Texture = thor::Resources::fromFile<sf::Texture>(TEXTURE_PATH);
+	Texture.load();
+	int a = pgm->saveGameManager.LoadInt("test");
 }
 
-PP::Entity::~Entity()
+Entity::~Entity()
 {
 	std::cout << "Entity has been destroyed.";
 }
 
-void PP::Entity::SetTexture()
+void Entity::SetTexture()
 {
 }
 
-void PP::Entity::Update()
+void Entity::Update()
 {
 }

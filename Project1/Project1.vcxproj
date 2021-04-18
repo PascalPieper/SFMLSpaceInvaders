@@ -132,26 +132,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationInformation.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOReading.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationInformation.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="IManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOReading.h" />
+    <ClInclude Include="IPlayerCharacter.h" />
     <ClInclude Include="IUpdate.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SaveGameManager.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

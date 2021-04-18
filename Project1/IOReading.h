@@ -43,6 +43,9 @@ public:
 	//loads an int from a file or creates an entry in a new file and returns the InitValue as the starting value.
 	//This has to be called at least once to produce the file and the key inside the .json and can henceforth be used as the default read
 	int ProvideInt(FilePath *fp, std::string key, int InitValue);
+
+	float ProvideFloat(FilePath *fp, std::string key, float InitValue);
+	std::string ProvideString(FilePath *fp, std::string key, std::string InitValue);
 };
 }
 

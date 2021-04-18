@@ -1,16 +1,22 @@
 #pragma once
+#include <Thor/Resources.hpp>
 #include <SFML/Graphics.hpp>
+#include "GameManager.h"
 #include <iostream>
 #include "IUpdate.h"
-namespace PP{
+
+namespace mat
+{
 class Entity : public sf::Transformable, public IUpdate
 {
 public:
-	Entity(); 
+	Entity(GameManager* gm);
 	~Entity();
 protected:
-
-	sf::Vector2f _position = sf::Vector2f{1.f, 1.f};
+	GameManager* pgm;
+	const std::string TEXTURE_PATH;
+	thor::ResourceLoader<sf::Texture> Texture = thor::Resources::fromFile<sf::Texture>("image.jpg");
+	sf::Vector2f _position;
 
 public:
 	void SetTexture();

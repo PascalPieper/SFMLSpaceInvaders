@@ -5,15 +5,17 @@
 #include <iostream>
 #include "FilePath.h"
 #include "Thor/Resources.hpp"
+#include <Thor/Input.hpp>
 using namespace sf;
+
 int main()
 {
-
 	IOReading io;
-	FilePath path("test", "test");
-	int test = io.ProvideInt(&path, "test", 1);
-	std::cout << test;
-	EntityManager em;
+	FilePath fp("Gameplay", "Armon");
+	float attackspeed = io.ProvideFloat(&fp, "AttackSpeed", 1.5f);
+	std::cout << attackspeed;
+
+	mat_m::EntityManager em;
 	em.CreateBackground("test", Vector2f{ 4.f, 9.f });
 
 	sf::RenderWindow window(sf::VideoMode(640, 480), "SFML works!");

@@ -32,7 +32,7 @@ namespace mat_m
 		void Write(json j);
 
 		//Use this to return the Windows AppData path: Only works on Win7 and higher
-		//NEEDS FIX: in order to save in browser or other systems we need to add functionality to detect the OS 
+		//NEEDS FIX: in order to save in browser or other systems we need to add functionality to detect the OS, too bad...
 		std::string FindAppDataPath();
 
 		//NOT IMPLEMENTED!

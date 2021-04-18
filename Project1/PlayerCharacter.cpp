@@ -1,5 +1,9 @@
 #include "PlayerCharacter.h"
 
+PlayerCharacter::PlayerCharacter()
+{
+}
+
 void PlayerCharacter::MoveLeft()
 {
 	std::cout << "Moving left!";

@@ -144,7 +144,37 @@ int PP::IOReading::ProvideInt(FilePath * fp, std::string key, int InitValue)
 	}
 }
 
-int PP::IOReading::ProvideFloat(FilePath * fp, std::string key, float InitValue)
+float PP::IOReading::ProvideFloat(FilePath * fp, std::string key, float InitValue)
+{
+	CreateDirectory(fp->FolderName);
+
+	if (CheckFileExists(fp))
+	{
+		std::ifstream i(fp->FullFilePath);
+		nlohmann::json j;
+		i >> j;
+		if (j.contains(key))
+		{
+			return j[key];
+		}
+		else
+		{
+			j.clear();
+			j[key] = InitValue;
+			Write(j, fp->FullFilePath);
+			return InitValue;
+		}
+	}
+	else
+	{
+		nlohmann::json j;
+		j[key] = InitValue;
+		Write(j, fp->FullFilePath);
+		return InitValue;
+	}
+}
+
+std::string PP::IOReading::ProvideString(FilePath * fp, std::string key, std::string InitValue)
 {
 	CreateDirectory(fp->FolderName);
 

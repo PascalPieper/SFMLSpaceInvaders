@@ -1,31 +1,36 @@
 #include "EntityManager.h"
 
-EntityManager::EntityManager()
+mat_m::EntityManager::EntityManager()
 {
 }
 
-void EntityManager::CreateBackground(std::string EntityName, sf::Vector2f spawnPosition)
+
+void mat_m::EntityManager::SendInput()
 {
-	std::shared_ptr<Entity> Background = std::make_shared<Entity>();
+}
+
+void mat_m::EntityManager::CreateBackground(std::string EntityName, sf::Vector2f spawnPosition)
+{
+	std::shared_ptr<mat::Entity> Background = std::make_shared<mat::Entity>();
 	//Background->setPosition(spawnPosition);
 	_SharedBackgrounds.push_back(&Background);
 }
 
-void EntityManager::CreatePlayer()
+void mat_m::EntityManager::CreatePlayer()
 {
 	auto newPlayer = new PlayerCharacter();
 	_Players.push_back(newPlayer);
 }
 
-void EntityManager::CreateCollider(std::string EntityName)
+void mat_m::EntityManager::CreateCollider(std::string EntityName)
 {
 	sf::Vector2f test{ 1.f, 2.f };
-	std::shared_ptr<Entity> Bullet = std::make_shared<Entity>();
+	std::shared_ptr<mat::Entity> Bullet = std::make_shared<mat::Entity>();
 	//auto Bullet = new Entity();
 
 }
 
-void EntityManager::DeleteBackgrounds()
+void mat_m::EntityManager::DeleteBackgrounds()
 {
 	for (int i = 0; i < _Backgrounds.size(); i++)
 	{
@@ -34,7 +39,7 @@ void EntityManager::DeleteBackgrounds()
 	_Backgrounds.clear();
 }
 
-void EntityManager::DeleteAllEntities()
+void mat_m::EntityManager::DeleteAllEntities()
 {
 	DeleteBackgrounds();
 }

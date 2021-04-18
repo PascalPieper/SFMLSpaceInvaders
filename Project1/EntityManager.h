@@ -6,7 +6,8 @@
 #include "Entity.h"
 #include "IManager.h"
 #include "PlayerCharacter.h"
-using namespace PP;
+namespace mat_m
+{
 class EntityManager
 {
 public:
@@ -14,13 +15,14 @@ public:
 public:
 	//std::map<std::unique_ptr<Entity>, std::string> m_Entities;
 
-	std::vector<std::shared_ptr<Entity>*> _SharedBackgrounds;
+	std::vector<std::shared_ptr<mat::Entity>*> _SharedBackgrounds;
 
-	std::vector<Entity*> _Backgrounds;
-	std::vector<Entity*> _Colliders;
-	std::vector<Entity*> _Actors;
+	std::vector<mat::Entity*> _Backgrounds;
+	std::vector<mat::Entity*> _Colliders;
+	std::vector<mat::Entity*> _Actors;
 	std::vector<IPlayerCharacter*> _Players;
 public:
+	void SendInput();
 	void CreateBackground(std::string EntityName, sf::Vector2f spawnPosition);
 	void CreatePlayer();
 	void CreateCollider(std::string EntityName);
@@ -29,3 +31,4 @@ public:
 
 private:
 };
+}
