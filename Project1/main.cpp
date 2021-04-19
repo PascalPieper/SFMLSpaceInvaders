@@ -1,24 +1,22 @@
 #include <SFML/Graphics.hpp>
-#include "EntityManager.h"
-#include "Entity.h"
 #include "IOReading.h"
 #include <iostream>
 #include "FilePath.h"
 #include "Thor/Resources.hpp"
 #include <Thor/Input.hpp>
+#include "Entity.h"
 using namespace sf;
 
 int main()
 {
-	IOReading io;
-	FilePath fp("Gameplay", "Armon");
-	float attackspeed = io.ProvideFloat(&fp, "AttackSpeed", 1.5f);
-	std::cout << attackspeed;
 
-	mat_m::EntityManager em;
-	em.CreateBackground("test", Vector2f{ 4.f, 9.f });
 
 	sf::RenderWindow window(sf::VideoMode(640, 480), "SFML works!");
+	window.setFramerateLimit(60);
+	GameManager gm;
+	Entity et(&gm);
+
+	/*
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 	Texture text;
@@ -31,6 +29,7 @@ int main()
 	rectangle.setPosition(320, 240);
 	rectangle.setOrigin(rectangle.getSize().x / 2,
 		rectangle.getSize().y / 2);
+		*/
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -39,11 +38,9 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		sprite.move(0, 0.01f);
+		et.EntitySprite.move(5.f, 1.f);
+		window.draw(et.EntitySprite);
 		window.clear();
-		window.draw(shape);
-		window.draw(rectangle);
-		window.draw(sprite);
 		window.display();
 	}
 

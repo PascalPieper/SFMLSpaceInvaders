@@ -5,41 +5,44 @@ mat_m::EntityManager::EntityManager()
 }
 
 
-void mat_m::EntityManager::SendInput()
+unsigned int mat_m::EntityManager::AssignEntityID()
 {
+	EntityCount++;
+	return EntityCount;
 }
 
-void mat_m::EntityManager::CreateBackground(std::string EntityName, sf::Vector2f spawnPosition)
+void mat_m::EntityManager::AddToEntities(int *id, Entity &entity)
 {
-	std::shared_ptr<mat::Entity> Background = std::make_shared<mat::Entity>();
-	//Background->setPosition(spawnPosition);
-	_SharedBackgrounds.push_back(&Background);
+	Entities.insert({ *id, &entity });
 }
 
-void mat_m::EntityManager::CreatePlayer()
+void mat_m::EntityManager::AcquireTexture(std::string& FilePath)
 {
-	auto newPlayer = new PlayerCharacter();
-	_Players.push_back(newPlayer);
+	
 }
 
-void mat_m::EntityManager::CreateCollider(std::string EntityName)
+Entity* mat_m::EntityManager::CreateNewEntity()
 {
-	sf::Vector2f test{ 1.f, 2.f };
-	std::shared_ptr<mat::Entity> Bullet = std::make_shared<mat::Entity>();
-	//auto Bullet = new Entity();
+	Entity *ent = new Entity(pgm);
+	ent->EntityID = AssignEntityID();
+	AddToEntities(ent->EntityID, *ent);
 
+	sf::Texture& texture = PrepareTexture(ent);
+	ent->EntitySprite.setTexture(texture);
+	return ent;
 }
 
-void mat_m::EntityManager::DeleteBackgrounds()
+sf::Texture & mat_m::EntityManager::PrepareTexture(Entity* pEntity)
 {
-	for (int i = 0; i < _Backgrounds.size(); i++)
+	holder.acquire(pEntity->TEXTURE_PATH, thor::Resources::fromFile<sf::Texture>(pEntity->TEXTURE_PATH));
+	return holder[pEntity->TEXTURE_PATH];
+}
+
+
+void mat_m::EntityManager::Update()
+{
+	for (int i = 0; i < Entities.size; i++)
 	{
-		delete(_Backgrounds[i]);
+		Entities[i].Update();
 	}
-	_Backgrounds.clear();
-}
-
-void mat_m::EntityManager::DeleteAllEntities()
-{
-	DeleteBackgrounds();
 }

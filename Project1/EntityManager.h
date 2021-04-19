@@ -1,34 +1,45 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <memory>
 #include <map>
-#include <vector>
+#include <SFML/Graphics.hpp>
+#include "GameManager.h"
+#include <Thor/Resources.hpp>
 #include "Entity.h"
-#include "IManager.h"
-#include "PlayerCharacter.h"
-namespace mat_m
+
+
+
+namespace mat_m 
 {
-class EntityManager
+class EntityManager 
 {
+
 public:
 	EntityManager();
-public:
-	//std::map<std::unique_ptr<Entity>, std::string> m_Entities;
-
-	std::vector<std::shared_ptr<mat::Entity>*> _SharedBackgrounds;
-
-	std::vector<mat::Entity*> _Backgrounds;
-	std::vector<mat::Entity*> _Colliders;
-	std::vector<mat::Entity*> _Actors;
-	std::vector<IPlayerCharacter*> _Players;
-public:
-	void SendInput();
-	void CreateBackground(std::string EntityName, sf::Vector2f spawnPosition);
-	void CreatePlayer();
-	void CreateCollider(std::string EntityName);
-	void DeleteBackgrounds();
-	void DeleteAllEntities();
 
 private:
+	
+	//Holder for all textures
+	
+
+	//Id assignment value for every asset
+	//FIX ME: Is never reset, thus can only support around 60k assets. 
+	//for longtime support should be reset after scene load
+
+
+
+public:
+	GameManager * pgm = nullptr;
+	std::map<int*, Entity> Entities;
+
+	unsigned int EntityCount;
+
+	unsigned int AssignEntityID();
+	void AddToEntities(int *id, Entity &entity);
+
+	thor::ResourceHolder<sf::Texture, std::string> holder;
+	void AcquireTexture(std::string& FilePath);
+
+	Entity* CreateNewEntity();
+	sf::Texture& PrepareTexture(Entity* pEntity);
+	void Update();
 };
 }
