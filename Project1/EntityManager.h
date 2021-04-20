@@ -28,12 +28,12 @@ private:
 
 public:
 	GameManager * pgm = nullptr;
-	std::map<int*, Entity> Entities;
+	std::map<unsigned int*, Entity*> Entities;
 
 	unsigned int EntityCount;
 
 	unsigned int AssignEntityID();
-	void AddToEntities(int *id, Entity &entity);
+	void AddToEntities(unsigned int *id, Entity *entity);
 
 	thor::ResourceHolder<sf::Texture, std::string> holder;
 	void AcquireTexture(std::string& FilePath);

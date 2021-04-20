@@ -11,9 +11,9 @@ unsigned int mat_m::EntityManager::AssignEntityID()
 	return EntityCount;
 }
 
-void mat_m::EntityManager::AddToEntities(int *id, Entity &entity)
+void mat_m::EntityManager::AddToEntities(unsigned int *id, Entity *entity)
 {
-	Entities.insert({ *id, &entity });
+	Entities.insert({ id, entity });
 }
 
 void mat_m::EntityManager::AcquireTexture(std::string& FilePath)
@@ -25,7 +25,7 @@ Entity* mat_m::EntityManager::CreateNewEntity()
 {
 	Entity *ent = new Entity(pgm);
 	ent->EntityID = AssignEntityID();
-	AddToEntities(ent->EntityID, *ent);
+	AddToEntities(&(ent->EntityID), ent);
 
 	sf::Texture& texture = PrepareTexture(ent);
 	ent->EntitySprite.setTexture(texture);
@@ -41,8 +41,9 @@ sf::Texture & mat_m::EntityManager::PrepareTexture(Entity* pEntity)
 
 void mat_m::EntityManager::Update()
 {
-	for (int i = 0; i < Entities.size; i++)
+
+	for (unsigned int i = 0; i < Entities.size(); i++)
 	{
-		Entities[i].Update();
+		Entities.at(&i)->Update();
 	}
 }
