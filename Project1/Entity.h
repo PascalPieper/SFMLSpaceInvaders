@@ -8,7 +8,7 @@ class GameManager;
 class Entity : public sf::Transformable, public IUpdate
 {
 public:
-	Entity(std::string Path, unsigned int Layer, unsigned int CollisionIndex, sf::Vector2f SpawnPosition);
+	Entity(sf::Vector2f SpawnPosition);
 	~Entity();
 
 protected:
@@ -23,6 +23,8 @@ protected:
 	sf::Texture _texture;
 
 public:
+	enum EntityTag { PLAYER = 0, ENEMY = 1, NPC = 2, BULLET = 3, PLATFORM = 4, BACKGROUND = 5, HITBOX = 6 };
+	EntityTag tag = ENEMY;
 	sf::Sprite _sprite;
 	GameManager* pGameManager;
 public:

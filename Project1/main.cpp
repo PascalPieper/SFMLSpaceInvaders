@@ -9,9 +9,9 @@ int main()
     GameManager gm;
     mat_m::SaveGameManager sgm("test");
     gm.pSaveGameManager = &sgm;
-    gm.CreateEntity("rainerSmall.jpg", 0, 0, sf::Vector2f{ 0,0 });
+    //gm.CreateEntity();
 
-    //MoveEntity me("rainerSmall.jpg", 0, 0, sf::Vector2f{ 0,0 });
+    MoveEntity me(sf::Vector2f{ 0,0 });
 
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
     window.setSize(sf::Vector2u{ 1920, 1080 });
@@ -39,7 +39,7 @@ int main()
 
         window.clear();
         window.draw(enem.sprite);
-        window.draw(gm.getEntity(0)->_sprite);
+        window.draw(me._sprite);
         //window.draw(shape);
         window.display();
         

@@ -39,7 +39,6 @@ namespace mat_m
 		//Only to be called once at a time during runtime.
 		//IMPLEMENTATION: This needs to reference all Entities that should be saved at the end of a run
 		//and overwrite the persistent keys with the temp keys
-		void SaveGame();
 
 
 	public:

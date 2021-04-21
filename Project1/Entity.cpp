@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(std::string Path, unsigned int Layer, unsigned int CollisionIndex, sf::Vector2f SpawnPosition)
+Entity::Entity(sf::Vector2f SpawnPosition)
 {
 	_texture.loadFromFile(TEXTURE_PATH);
 	_sprite.setTexture(_texture);

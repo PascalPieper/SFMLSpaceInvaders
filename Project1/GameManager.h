@@ -15,5 +15,7 @@ private:
 	unsigned int count = 0;
 public:
 	Entity* getEntity(unsigned int id);
-	void CreateEntity(std::string Path, unsigned int Layer, unsigned int CollisionIndex, sf::Vector2f SpawnPosition);
+	void CreateEntity(sf::Vector2f SpawnPosition);
+	void Update();
+	void Draw();
 };
