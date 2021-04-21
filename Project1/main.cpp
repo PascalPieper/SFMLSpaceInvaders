@@ -1,48 +1,49 @@
 #include <SFML/Graphics.hpp>
-#include "IOReading.h"
+#include "FireEnemy.h"
+#include "MoveEntity.h"
+#include "GameManager.h"
 #include <iostream>
-#include "FilePath.h"
-#include "Thor/Resources.hpp"
-#include <Thor/Input.hpp>
-#include "Entity.h"
-using namespace sf;
-
 int main()
 {
 
+    GameManager gm;
+    mat_m::SaveGameManager sgm("test");
+    gm.pSaveGameManager = &sgm;
+    gm.CreateEntity("rainerSmall.jpg", 0, 0, sf::Vector2f{ 0,0 });
 
-	sf::RenderWindow window(sf::VideoMode(640, 480), "SFML works!");
-	window.setFramerateLimit(60);
-	GameManager gm;
-	Entity et(&gm);
+    //MoveEntity me("rainerSmall.jpg", 0, 0, sf::Vector2f{ 0,0 });
 
-	/*
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	Texture text;
-	text.loadFromFile("rainerSmall.jpg");
+    sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
+    window.setSize(sf::Vector2u{ 1920, 1080 });
+    window.setFramerateLimit(60);
+    Enemy enem;
+    sf::Clock clock;
+    sf::Time time;
+    float dt = 0;
+    //sf::CircleShape shape(100.f);
+    //shape.setFillColor(sf::Color::Green);
 
-	RectangleShape rectangle(sf::Vector2f(128.0f, 128.0f));
-	Sprite sprite(text);
-	sprite.setPosition(5.f, 5.f);
-	rectangle.setFillColor(sf::Color::Red);
-	rectangle.setPosition(320, 240);
-	rectangle.setOrigin(rectangle.getSize().x / 2,
-		rectangle.getSize().y / 2);
-		*/
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-		et.EntitySprite.move(5.f, 1.f);
-		window.draw(et.EntitySprite);
-		window.clear();
-		window.display();
-	}
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+            
+        }
+        
+        time = clock.restart();
+        float dt = time.asSeconds();
 
-	return 0;
+
+        window.clear();
+        window.draw(enem.sprite);
+        window.draw(gm.getEntity(0)->_sprite);
+        //window.draw(shape);
+        window.display();
+        
+    }
+
+    return 0;
 }

@@ -1,20 +1,23 @@
-#ifndef __ENEMY_H__
-#define __ENEMY_H__
-
 #pragma once
 #include "IUpdate.h"
-namespace PP
-{
-class Enemy : public IUpdate
+#include <SFML/Graphics.hpp>
+#include <Thor/Resources.hpp>
+#include <iostream>
+
+class Enemy : public sf::Transformable, public IUpdate
 {
 public:
-	Enemy(int health);
-private:
+	sf::Sprite sprite;
+	sf::Texture texture;
+	Enemy();
+
+protected:
+	bool _direction;
+	const std::string TEXTURE_PATH = "Assets/Sprites/SpaceShip.png";
 	int _Health = 100;
 
+
 public: 
-	void Update();
-	void test();
+	virtual void Update();
+	virtual void move(float speed);
 };
-}
-#endif // __ENEMY_H__

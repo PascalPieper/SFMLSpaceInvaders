@@ -1,21 +1,19 @@
 #pragma once
-#include <string>
-#include <memory>
-#include <vector>
-#include "IManager.h"
+class Entity;
+#include <map>
+#include "Entity.h"
 #include "SaveGameManager.h"
-namespace mat_m 
-{
-	class EntityManager;
-}
-
-class GameManager 
+class GameManager
 {
 public:
 	GameManager();
 
 public:
-	std::shared_ptr<mat_m::EntityManager> EntityManager;
-	//mat_m::EntityManager *EntityManager = nullptr;
-	//mat_m::SaveGameManager saveGameManager;
+	mat_m::SaveGameManager* pSaveGameManager;
+private:
+	std::map<unsigned int, Entity*> Entities;
+	unsigned int count = 0;
+public:
+	Entity* getEntity(unsigned int id);
+	void CreateEntity(std::string Path, unsigned int Layer, unsigned int CollisionIndex, sf::Vector2f SpawnPosition);
 };

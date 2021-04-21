@@ -135,12 +135,13 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="EntityManager.cpp" />
-    <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="FireEnemy.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOReading.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveEntity.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
   </ItemGroup>
@@ -149,15 +150,16 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="FilePath.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="FilePath.h" />
+    <ClInclude Include="FireEnemy.h" />
     <ClInclude Include="IManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOReading.h" />
     <ClInclude Include="IPlayerCharacter.h" />
     <ClInclude Include="IUpdate.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="MoveEntity.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SaveGameManager.h" />
     <ClInclude Include="TextureManager.h" />
