@@ -29,6 +29,6 @@ void GameManager::Draw()
 {
 	for (int i = 0; i < Entities.size(); i++)
 	{
-		Entities[i]->_sprite;
+		Entities[i]->EntitySprite;
 	}
 }

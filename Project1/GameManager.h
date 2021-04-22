@@ -3,6 +3,7 @@ class Entity;
 #include <map>
 #include "Entity.h"
 #include "SaveGameManager.h"
+class GameManager;
 class GameManager
 {
 public:

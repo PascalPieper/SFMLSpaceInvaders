@@ -5,3 +5,8 @@ MoveEntity::MoveEntity
 {
 
 }
+
+void MoveEntity::MoveToTarget(Entity target)
+{
+	target.EntitySprite.getPosition();
+}

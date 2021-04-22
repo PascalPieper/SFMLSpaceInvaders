@@ -133,11 +133,13 @@
   <ItemGroup>
     <ClCompile Include="ApplicationInformation.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="CollisionEntity.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="FireEnemy.cpp" />
+    <ClCompile Include="HealthEntity.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOReading.cpp" />
     <ClCompile Include="main.cpp" />
@@ -148,11 +150,14 @@
   <ItemGroup>
     <ClInclude Include="ApplicationInformation.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="CollisionEntity.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Foward.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="FireEnemy.h" />
+    <ClInclude Include="HealthEntity.h" />
     <ClInclude Include="IManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOReading.h" />

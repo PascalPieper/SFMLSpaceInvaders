@@ -22,6 +22,9 @@
     <Filter Include="Header Files\Testing">
       <UniqueIdentifier>{10f7817b-3120-450e-a226-81e391f8ac7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entity Templates">
+      <UniqueIdentifier>{acc61631-c195-42da-ae15-3bed44f1c7c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,14 +57,20 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveEntity.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Header Files\Entity Templates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveEntity.cpp">
+      <Filter>Header Files\Entity Templates</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionEntity.cpp">
+      <Filter>Header Files\Entity Templates</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthEntity.cpp">
+      <Filter>Header Files\Entity Templates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,13 +116,22 @@
     <ClInclude Include="FireEnemy.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entity Templates</Filter>
     </ClInclude>
     <ClInclude Include="MoveEntity.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entity Templates</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
+    <ClInclude Include="CollisionEntity.h">
+      <Filter>Header Files\Entity Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthEntity.h">
+      <Filter>Header Files\Entity Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Foward.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

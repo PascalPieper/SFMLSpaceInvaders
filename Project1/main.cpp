@@ -39,7 +39,7 @@ int main()
 
         window.clear();
         window.draw(enem.sprite);
-        window.draw(me._sprite);
+        window.draw(me.EntitySprite);
         //window.draw(shape);
         window.display();
         
