@@ -45,6 +45,7 @@ inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f SpawnPosition)
 	NewEntity->pGameManager = this;
 	NewEntity->EntitySprite.setTexture(pAssetManager->LoadTexture(NewEntity->TextureName, NewEntity->TEXTURE_PATH));
 	Entities.insert({ count, NewEntity });
+	NewEntity->EntitySprite.setPosition(SpawnPosition);
 	count++;
 	return NewEntity;
 }

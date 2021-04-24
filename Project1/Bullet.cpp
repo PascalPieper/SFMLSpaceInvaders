@@ -4,8 +4,9 @@ Bullet::Bullet(sf::Vector2f SpawnPosition) : CollisionEntity(SpawnPosition)
 {
 	tag = BULLET;
 	TEXTURE_PATH = "Assets/Sprites/Bullet.png";
+	TextureName = "BaseBullet";
 	_DrawLayer = 5;
-	_MovementSpeed = 1;
+	_MovementSpeed = 5;
 	_AccelerationSpeed = 0.1f;
 	_AccelerationIncrease = 0.05f;
 	_collisionIndex = 0;

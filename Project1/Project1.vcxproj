@@ -147,12 +147,15 @@
     <ClCompile Include="MoveEntity.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ScrollingBackground.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationInformation.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CollisionEntity.h" />
+    <ClInclude Include="CompHeader.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Foward.h" />
@@ -169,6 +172,9 @@
     <ClInclude Include="MoveEntity.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SaveGameManager.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScrollingBackground.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

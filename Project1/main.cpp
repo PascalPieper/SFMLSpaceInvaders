@@ -1,11 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include "GameManager.h"
-#include <iostream>
-#include "AssetManager.h"
-#include "Bullet.h"
-#include "Enemy.h"
-#include <memory>
-class Bullet;
+#include "CompHeader.h"
 int main()
 {
 
@@ -15,16 +8,23 @@ int main()
     gm.pSaveGameManager = &sgm;
     gm.pAssetManager = &am;
 
-    gm.CreateEntity<Bullet>(sf::Vector2f{ 0,0 });
-    gm.CreateEntity<Entity>(sf::Vector2f{ 0,0 });
 
 
 
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
-    window.setSize(sf::Vector2u{ 1920, 1080 });
+
+    //window.setSize(sf::Vector2u{ 1920, 1080 });
     window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
     //sf::CircleShape shape(100.f);
     //shape.setFillColor(sf::Color::Green);
+
+    gm.CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 });
+    /*
+    sf::Texture text;
+    text.loadFromFile("rainerSmall.jpg");
+    testa->EntitySprite.setTexture(text);
+    */
 
     while (window.isOpen())
     {
@@ -33,13 +33,12 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            
+   
         }
-        std::cout << gm.GetDeltaTime();
-
-        gm.Draw(window);
+        gm.Update();
+        
         window.clear();
-        //window.draw(test->EntitySprite);
+        gm.Draw(window);
         window.display();
         gm.RefreshDeltatime();
     }

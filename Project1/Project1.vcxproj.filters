@@ -27,6 +27,15 @@
     <Filter Include="Source Files\Interfaces">
       <UniqueIdentifier>{297db953-6af0-49dc-9e66-1456fc29c408}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Background">
+      <UniqueIdentifier>{2f47d5c3-2eb5-4ecd-a74f-dd72d13d8a4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Compilation Header">
+      <UniqueIdentifier>{e1a30b7b-2309-4261-94ba-308b50b72eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{dc1c59bf-b4f9-48fa-afed-e4a9a03dc10a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollingBackground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +156,18 @@
     </ClInclude>
     <ClInclude Include="IPlayerCharacter.h">
       <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollingBackground.h">
+      <Filter>Header Files\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="CompHeader.h">
+      <Filter>Header Files\Compilation Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
