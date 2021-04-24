@@ -1,6 +1,3 @@
-#ifndef __IOREADING_H__
-#define __IOREADING_H__
-
 #pragma once
 #include <fstream>
 #include <filesystem>
@@ -48,5 +45,3 @@ public:
 	std::string ProvideString(FilePath *fp, std::string key, std::string InitValue);
 };
 }
-
-#endif // __IOREADING_H__

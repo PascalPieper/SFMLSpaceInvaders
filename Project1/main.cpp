@@ -1,25 +1,27 @@
 #include <SFML/Graphics.hpp>
-#include "FireEnemy.h"
-#include "MoveEntity.h"
 #include "GameManager.h"
 #include <iostream>
+#include "AssetManager.h"
+#include "Bullet.h"
+#include "Enemy.h"
 int main()
 {
 
     GameManager gm;
     mat_m::SaveGameManager sgm("test");
+    AssetManager am;
     gm.pSaveGameManager = &sgm;
-    //gm.CreateEntity();
+    gm.pAssetManager = &am;
+    Enemy* enem = new Enemy(sf::Vector2f{ 55,55 });
+    Bullet* bul = new Bullet(sf::Vector2f{ 0,0 });
+    bul->pGameManager = &gm;
 
-    MoveEntity me(sf::Vector2f{ 0,0 });
+    gm.CreateAny<Bullet>(sf::Vector2f{ 0,0 });
+  
 
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
     window.setSize(sf::Vector2u{ 1920, 1080 });
     window.setFramerateLimit(60);
-    Enemy enem;
-    sf::Clock clock;
-    sf::Time time;
-    float dt = 0;
     //sf::CircleShape shape(100.f);
     //shape.setFillColor(sf::Color::Green);
 
@@ -32,17 +34,16 @@ int main()
                 window.close();
             
         }
-        
-        time = clock.restart();
-        float dt = time.asSeconds();
+        bul->Move();
+        std::cout << gm.GetDeltaTime();
 
-
+        //gm.Draw(window);
         window.clear();
-        window.draw(enem.sprite);
-        window.draw(me.EntitySprite);
-        //window.draw(shape);
+        //window.draw(test->EntitySprite);
+        window.draw(enem->EntitySprite);
+        window.draw(bul->EntitySprite);
         window.display();
-        
+        gm.RefreshDeltatime();
     }
 
     return 0;
