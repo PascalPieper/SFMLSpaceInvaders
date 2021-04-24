@@ -4,6 +4,7 @@
 #include "SaveGameManager.h"
 #include "AssetManager.h"
 #include <memory>
+class Entity;
 class GameManager
 {
 public:

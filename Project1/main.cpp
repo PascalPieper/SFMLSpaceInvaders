@@ -4,6 +4,8 @@
 #include "AssetManager.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include <memory>
+class Bullet;
 int main()
 {
 
@@ -12,12 +14,11 @@ int main()
     AssetManager am;
     gm.pSaveGameManager = &sgm;
     gm.pAssetManager = &am;
-    Enemy* enem = new Enemy(sf::Vector2f{ 55,55 });
-    Bullet* bul = new Bullet(sf::Vector2f{ 0,0 });
-    bul->pGameManager = &gm;
 
-    gm.CreateAny<Bullet>(sf::Vector2f{ 0,0 });
-  
+    gm.CreateEntity<Bullet>(sf::Vector2f{ 0,0 });
+    gm.CreateEntity<Entity>(sf::Vector2f{ 0,0 });
+
+
 
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
     window.setSize(sf::Vector2u{ 1920, 1080 });
@@ -34,14 +35,11 @@ int main()
                 window.close();
             
         }
-        bul->Move();
         std::cout << gm.GetDeltaTime();
 
-        //gm.Draw(window);
+        gm.Draw(window);
         window.clear();
         //window.draw(test->EntitySprite);
-        window.draw(enem->EntitySprite);
-        window.draw(bul->EntitySprite);
         window.display();
         gm.RefreshDeltatime();
     }
