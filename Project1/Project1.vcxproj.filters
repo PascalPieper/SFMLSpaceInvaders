@@ -36,6 +36,9 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{dc1c59bf-b4f9-48fa-afed-e4a9a03dc10a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\imgui">
+      <UniqueIdentifier>{5bd73ef8-5ec3-428f-834b-eba0bd86bb74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -94,6 +97,24 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Header Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-SFML.cpp">
+      <Filter>Source Files\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +195,18 @@
     </ClInclude>
     <ClInclude Include="EntityEnums.h">
       <Filter>Header Files\Compilation Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-SFML.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-SFML_export.h">
+      <Filter>Source Files\imgui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -87,13 +87,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include;C:\thor-v2.0-sdk\include;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\imgui-sfml-master;C:\imgui-master;C:\SFML-2.5.1\include;C:\thor-v2.0-sdk\include;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;C:\thor-v2.0-sdk\src;C:\thor-v2.0-sdk\extlibs;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -141,6 +141,12 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="FilePath.cpp" />
     <ClCompile Include="HealthEntity.cpp" />
+    <ClCompile Include="imgui-SFML.cpp" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOReading.cpp" />
     <ClCompile Include="main.cpp" />
@@ -165,6 +171,10 @@
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="HealthEntity.h" />
     <ClInclude Include="IManager.h" />
+    <ClInclude Include="imgui-SFML.h" />
+    <ClInclude Include="imgui-SFML_export.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_internal.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOReading.h" />
     <ClInclude Include="IPlayerCharacter.h" />
