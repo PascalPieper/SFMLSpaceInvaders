@@ -9,7 +9,12 @@ Scene::~Scene()
 {
 }
 
-bool Scene::LoadScene()
+bool Scene::LoadSceneContents()
+{
+    return true;
+}
+
+bool Scene::UnloadSceneContents()
 {
     return false;
 }

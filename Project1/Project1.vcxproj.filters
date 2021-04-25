@@ -92,6 +92,9 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Header Files\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -168,6 +171,9 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityEnums.h">
+      <Filter>Header Files\Compilation Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

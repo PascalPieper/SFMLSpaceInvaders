@@ -2,11 +2,11 @@
 ScrollingBackground::ScrollingBackground(sf::Vector2f SpawnPosition) : MoveEntity(SpawnPosition)
 
 {
-	tag = BULLET;
+	tag = Tag::BULLET;
 	TEXTURE_PATH = "Assets/Background/ScrollingBackground01.png";
 	TextureName = "Background01";
-	_DrawLayer = 0;
-	_MovementSpeed = 50;
+	//_DrawLayer = 0;
+	_MovementSpeed = 120;
 }
 void ScrollingBackground::ScrollRight()
 {
@@ -17,7 +17,7 @@ void ScrollingBackground::ScrollRight()
 	}
 	else
 	{
-		EntitySprite.setPosition(JUMPBACK_START, 0);
+		EntitySprite.setPosition(EntitySprite.getPosition().x + JUMPBACK_MAX, 0);
 	}
 	
 }

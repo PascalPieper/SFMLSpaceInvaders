@@ -23,7 +23,7 @@ private:
 public:
 	float GetDeltaTime() { return _deltaTime; }
 	void RefreshDeltatime();
-
+	void SortByDrawIndex();
 
 
 	std::shared_ptr<Entity> getEntity(unsigned int id);

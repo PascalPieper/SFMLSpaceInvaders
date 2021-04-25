@@ -11,6 +11,11 @@ void GameManager::RefreshDeltatime()
 	_deltaTime = clock.restart().asSeconds();
 }
 
+void GameManager::SortByDrawIndex()
+{
+
+}
+
 std::shared_ptr<Entity> GameManager::getEntity(unsigned int id)
 {
 	return Entities.find(id)->second;

@@ -1,12 +1,19 @@
 #pragma once
 #include "Scene.h"
 #include <vector>
+#include <SFML/Graphics.hpp>
 class SceneManager
 {
 public:
-	SceneManager();
-	
-	int getSceneSize() {return (int)Scenes.size();}
+	SceneManager(sf::RenderWindow window);
+
 protected:
-	std::vector<Scene> Scenes;
+	std::vector<Scene> _scenes;
+
+	//Getters
+public:
+	int GetSceneSize() { return (int)_scenes.size(); }
+
+public:
+	void LoadScene(unsigned int SceneNumber);
 };

@@ -6,7 +6,7 @@ PlayerCharacter::PlayerCharacter()
 
 void PlayerCharacter::MoveLeft()
 {
-	std::cout << "Moving left!";
+	//std::cout << "Moving left!";
 }
 
 void PlayerCharacter::MoveRight()

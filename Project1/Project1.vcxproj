@@ -148,6 +148,7 @@
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="CompHeader.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityEnums.h" />
     <ClInclude Include="Foward.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="FilePath.h" />

@@ -7,7 +7,7 @@ public:
 
 protected:
 	const float JUMPBACK_START = 0;
-	const float JUMPBACK_MAX = 425;
+	const float JUMPBACK_MAX = 424;
 
 public:
 	void ScrollRight();

@@ -6,12 +6,18 @@ class Scene
 public:
 	Scene(GameManager* pGameManager);
 	~Scene();
-	
-	virtual bool LoadScene();
-	const std::string GetSceneName() const {return SCENE_NAME;}
 
 protected:
+	GameManager* _pGameManager;
 	const std::string SCENE_NAME;
-	bool IsLoaded = false;
+	bool _isLoaded = false;
 
+	//Getters
+public:
+	const std::string GetSceneName() const { return SCENE_NAME; }
+
+	//Functions
+public:
+	virtual bool LoadSceneContents();
+	virtual bool UnloadSceneContents();
 };
