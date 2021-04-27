@@ -1,9 +1,8 @@
-
 /*
 #include "CompHeader.h"
 int main()
 {
-
+  
     GameManager gm;
     mat_m::SaveGameManager sgm("test");
     AssetManager am;
@@ -16,7 +15,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
 
     window.setSize(sf::Vector2u{ 1920, 1080 });
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(90);
     window.setVerticalSyncEnabled(true);
 
     gm.CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 });
@@ -39,8 +38,8 @@ int main()
     }
 
     return 0;
-}*/
-
+}
+*/
 #include <SFML/OpenGL.hpp>
 #include "imgui.h"
 #include "imgui-SFML.h"
@@ -48,7 +47,7 @@ int main()
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
-#include "CompHeader.h"
+#include "main.h"
 int main()
 {
     GameManager gm;
@@ -59,10 +58,12 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
     window.setFramerateLimit(60);
-    window.setVerticalSyncEnabled(true);
+    window.setVerticalSyncEnabled(false);
+    window.setSize(sf::Vector2u{ 1920, 1080 });
     ImGui::SFML::Init(window);
-
     sf::Color bgColor;
+    auto test = gm.CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 });
+    
 
     float color[3] = { 0.f, 0.f, 0.f };
 
@@ -96,27 +97,36 @@ int main()
             bgColor.b = static_cast<sf::Uint8>(color[2] * 255.f);
         }
         float f;
-        if (ImGui::SliderFloat("float", &f, 0.0f, 1.0f))
-        {
-            std::cout << f;
-        }
+        Entity aentity(sf::Vector2f{ 0,0 });
 
+        if (ImGui::SliderFloat("float", &f, 0.0f, 900.0f))
+        {
+            test->SetMovementspeed(f);
+        }
+       
+        ImGui::Text("Hello, world %d", 123);
         // Window title text edit
         ImGui::InputText("Window title", windowTitle, 255);
 
-        if (ImGui::Button("Update window title")) {
-            // this code gets if user clicks on the button
-            // yes, you could have written if(ImGui::InputText(...))
-            // but I do this to show how buttons work :)
-            window.setTitle(windowTitle);
+        if (ImGui::Button("Update window title"))
+        {
+            //gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ 0,0 });
+            //window.setTitle(windowTitle);
         }
         ImGui::End(); // end window
-
+        gm.Update();
         window.clear(bgColor); // fill background with color
+        gm.Draw(window);
         ImGui::SFML::Render(window);
+        
         window.display();
+        gm.RefreshDeltatime();
     }
 
     ImGui::SFML::Shutdown();
     return 0;
+}
+
+main::main()
+{
 }

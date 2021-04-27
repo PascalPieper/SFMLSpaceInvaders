@@ -7,5 +7,5 @@ public:
 	Bullet(sf::Vector2f SpawnPosition);
 
 	virtual void Move();
-	void Update();
+	virtual void Update();
 };

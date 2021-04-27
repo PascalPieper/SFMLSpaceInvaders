@@ -4,6 +4,7 @@
 #include "SaveGameManager.h"
 #include "AssetManager.h"
 #include <memory>
+#include <vector>
 class Entity;
 class GameManager
 {
@@ -19,6 +20,7 @@ private:
 	sf::Clock clock;
 	float _deltaTime = 0;
 	std::map<unsigned int, std::shared_ptr<Entity>> Entities;
+	std::vector<unsigned int> DrawEnties;
 	unsigned int count = 0;
 public:
 	float GetDeltaTime() { return _deltaTime; }

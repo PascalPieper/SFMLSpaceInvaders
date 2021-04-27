@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AcceleratedBullet.cpp" />
     <ClCompile Include="ApplicationInformation.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
@@ -155,9 +156,11 @@
     <ClCompile Include="SaveGameManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScreenFade.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AcceleratedBullet.h" />
     <ClInclude Include="ApplicationInformation.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioManager.h" />
@@ -181,11 +184,13 @@
     <ClInclude Include="IUpdate.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MoveEntity.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SaveGameManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScreenFade.h" />
     <ClInclude Include="ScrollingBackground.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

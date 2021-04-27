@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include "imgui.h"
 Entity::Entity(sf::Vector2f SpawnPosition)
 {
 	//EntitySprite.setTexture(texture);

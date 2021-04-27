@@ -3,5 +3,13 @@
 #include "GameManager.h"
 #include <iostream>
 #include "AssetManager.h"
-#include "ScrollingBackground.h"
 #include <memory>
+#include <SFML/OpenGL.hpp>
+#include "imgui.h"
+#include "imgui-SFML.h"
+#include "ScrollingBackground.h"
+#include "AcceleratedBullet.h"
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/Window/Event.hpp>
+#include "CompHeader.h"

@@ -39,6 +39,9 @@
     <Filter Include="Source Files\imgui">
       <UniqueIdentifier>{5bd73ef8-5ec3-428f-834b-eba0bd86bb74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ScreenEffects">
+      <UniqueIdentifier>{0d0fb123-5a57-403e-abd8-e24ad885110a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -115,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="imgui-SFML.cpp">
       <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AcceleratedBullet.cpp">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenFade.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +216,15 @@
     </ClInclude>
     <ClInclude Include="imgui-SFML_export.h">
       <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AcceleratedBullet.h">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenFade.h">
+      <Filter>Header Files\ScreenEffects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

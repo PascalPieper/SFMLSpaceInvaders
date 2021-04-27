@@ -1,13 +1,16 @@
 #include "GameManager.h"
+#include "imgui.h"
+#include "imgui-SFML.h"
 class Entity;
 GameManager::GameManager() 
 	: _deltaTime(0)
 {
-
+	
 }
 
 void GameManager::RefreshDeltatime()
 {
+
 	_deltaTime = clock.restart().asSeconds();
 }
 
