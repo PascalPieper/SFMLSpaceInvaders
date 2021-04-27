@@ -1,15 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
+#include "IUpdate.h"
 #include <math.h>
-class ScreenFade
+
+class ScreenEffect : IUpdate
 {
 public:
-	ScreenFade(sf::Vector2f SpawnPosition, sf::Color color, float FadeDuration, sf::Vector2f size);
-	void Update();
+	ScreenEffect();
 
 protected:
-	
 	sf::Clock _clock;
 	sf::Color _color = { 0,0,0,0 };
 

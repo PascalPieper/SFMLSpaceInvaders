@@ -17,6 +17,7 @@ public:
 	//Engine specific Manager classes
 	GameManager* pGameManager;
 protected:
+	bool _isActive = true;
 	//The Unique ID that is bestowed upon every Entity upon creation that can be
 	//used to find the Object
 	unsigned int _EntityID = 0;
@@ -26,9 +27,6 @@ protected:
 	//unsigned int _DrawLayer = 0;
 
 	//DrawLayer _DrawLayer = BACKGROUND_01;
-
-public:
-	bool isActive = true;
 
 
 
@@ -46,11 +44,15 @@ public:
 public:
 	void SetID(unsigned int id) { _EntityID = id; }
 	unsigned int GetID() const { return _EntityID; }
-
+	void SetActive(bool state) { _isActive = state; }
+	bool GetActiveState() { return _isActive; }
 	//void SetDrawLayer(unsigned int layer) {_DrawLayer = layer;}
 	//unsigned int GetDrawLayer() const {};
 
 	void SetSprite(sf::Sprite sprite) { EntitySprite = sprite;}
-
+	sf::Sprite& GetEntitySprite() { return EntitySprite; }
+	std::string getTextureName() { return TextureName; }
+	std::string getTexturePath() { return TEXTURE_PATH; }
+	void SetPosition(sf::Vector2f position) { EntitySprite.setPosition(position); }
 	virtual void Update();
 };

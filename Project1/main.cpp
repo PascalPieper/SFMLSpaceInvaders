@@ -47,7 +47,8 @@ int main()
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
-#include "main.h"
+#include "CompHeader.h"
+#include "ScreenFade.h"
 int main()
 {
     GameManager gm;
@@ -57,13 +58,15 @@ int main()
     gm.pAssetManager = &am;
 
     sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(300);
     window.setVerticalSyncEnabled(false);
     window.setSize(sf::Vector2u{ 1920, 1080 });
     ImGui::SFML::Init(window);
     sf::Color bgColor;
     auto test = gm.CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 });
-    
+    sf::Vector2f vectortest = { 1.f, 2.f };
+    sf::Color colortest = {0,0,0,255 };
+    //auto screenfade = gm.CreateEntity<ScreenFade>(vectortest, colortest, 5.5f, (sf::Vector2f)window.getSize());
 
     float color[3] = { 0.f, 0.f, 0.f };
 
@@ -101,6 +104,7 @@ int main()
 
         if (ImGui::SliderFloat("float", &f, 0.0f, 900.0f))
         {
+            test->SetActive(false);
             test->SetMovementspeed(f);
         }
        
@@ -110,13 +114,16 @@ int main()
 
         if (ImGui::Button("Update window title"))
         {
-            //gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ 0,0 });
+            std::cout << window.getDefaultView().getSize().x;
+            //gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ (float)window.getSize().x, (float)window.getSize().y / 2 });
+            gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ window.getDefaultView().getSize().x, window.getDefaultView().getSize().y / 2 });
             //window.setTitle(windowTitle);
         }
         ImGui::End(); // end window
         gm.Update();
         window.clear(bgColor); // fill background with color
         gm.Draw(window);
+        //window.draw(screenfade->rect);
         ImGui::SFML::Render(window);
         
         window.display();
@@ -125,8 +132,4 @@ int main()
 
     ImGui::SFML::Shutdown();
     return 0;
-}
-
-main::main()
-{
 }

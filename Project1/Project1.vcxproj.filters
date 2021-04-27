@@ -42,6 +42,9 @@
     <Filter Include="Header Files\ScreenEffects">
       <UniqueIdentifier>{0d0fb123-5a57-403e-abd8-e24ad885110a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\NewFilter1">
+      <UniqueIdentifier>{522c8d49-2256-45bb-8e5b-ad44a9146262}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,6 +128,9 @@
     <ClCompile Include="ScreenFade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ScreenEffect.cpp">
+      <Filter>Header Files\ScreenEffects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -159,9 +165,6 @@
     </ClInclude>
     <ClInclude Include="HealthEntity.h">
       <Filter>Header Files\Entity Templates</Filter>
-    </ClInclude>
-    <ClInclude Include="Foward.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files\Manager</Filter>
@@ -220,10 +223,10 @@
     <ClInclude Include="AcceleratedBullet.h">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="ScreenFade.h">
+      <Filter>Header Files\ScreenEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenEffect.h">
       <Filter>Header Files\ScreenEffects</Filter>
     </ClInclude>
   </ItemGroup>

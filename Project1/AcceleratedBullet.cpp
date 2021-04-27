@@ -21,4 +21,5 @@ void AcceleratedBullet::Move()
 
 void AcceleratedBullet::Update()
 {
+	Move();
 }

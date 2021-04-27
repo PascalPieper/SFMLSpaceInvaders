@@ -61,15 +61,23 @@ void GameManager::Update()
 {
 	for (int i = 0; i < Entities.size(); i++)
 	{
-		Entities[i]->Update();
+		if (Entities[i]->GetActiveState())
+		{
+			Entities[i]->Update();
+		}
 	}
 }
+
 
 //NOT FULLY IMPLEMENTED
 void GameManager::Draw(sf::RenderWindow &window)
 {
 	for (int i = 0; i < Entities.size(); i++)
 	{
-		window.draw(Entities[i]->EntitySprite);
+		if (Entities[i]->GetActiveState())
+		{
+			window.draw(Entities[i]->GetEntitySprite());
+		}
+		
 	}
 }

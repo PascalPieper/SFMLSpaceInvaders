@@ -156,6 +156,7 @@
     <ClCompile Include="SaveGameManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScreenEffect.cpp" />
     <ClCompile Include="ScreenFade.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
   </ItemGroup>
@@ -169,7 +170,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityEnums.h" />
-    <ClInclude Include="Foward.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="FilePath.h" />
     <ClInclude Include="HealthEntity.h" />
@@ -184,12 +184,12 @@
     <ClInclude Include="IUpdate.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="MoveEntity.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SaveGameManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScreenEffect.h" />
     <ClInclude Include="ScreenFade.h" />
     <ClInclude Include="ScrollingBackground.h" />
     <ClInclude Include="TextureManager.h" />

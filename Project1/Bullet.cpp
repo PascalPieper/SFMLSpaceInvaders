@@ -21,7 +21,7 @@ void Bullet::Move()
 
 void Bullet::Update()
 {
-	if (isActive)
+	if (_isActive)
 	{
 		Move();
 	}
