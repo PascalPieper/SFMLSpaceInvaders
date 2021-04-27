@@ -104,19 +104,25 @@ int main()
 
         if (ImGui::SliderFloat("float", &f, 0.0f, 900.0f))
         {
-            test->SetActive(false);
+            //test->SetActive(false);
             test->SetMovementspeed(f);
         }
        
-        ImGui::Text("Hello, world %d", 123);
+        if (ImGui::Button("Toggle Background"))
+        {
+            bool toggle = test->GetActiveState();
+            toggle = !toggle;
+            test->SetActive(toggle);
+        }
         // Window title text edit
         ImGui::InputText("Window title", windowTitle, 255);
 
-        if (ImGui::Button("Update window title"))
+        if (ImGui::Button("Spawn Bullet"))
         {
             std::cout << window.getDefaultView().getSize().x;
             //gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ (float)window.getSize().x, (float)window.getSize().y / 2 });
-            gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ window.getDefaultView().getSize().x, window.getDefaultView().getSize().y / 2 });
+            gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ 360, 100});
+            //gm.CreateEntity<Bullet>(sf::Vector2f{});
             //window.setTitle(windowTitle);
         }
         ImGui::End(); // end window
