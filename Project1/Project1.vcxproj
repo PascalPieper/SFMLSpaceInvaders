@@ -76,9 +76,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\thor-v2.0-msvc2015\include;C:\imgui-master;C:\imgui-sfml-master;C:\SFML-2.5.1-32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;thor-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\thor-v2.0-msvc2015\bin;C:\thor-v2.0-msvc2015\include;C:\thor-v2.0-msvc2015\lib;C:\SFML-2.5.1-32\lib;C:\imgui-sfml-master;C:\imgui-master;C:\SFML-2.5.1-32\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -87,13 +91,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\imgui-sfml-master;C:\imgui-master;C:\SFML-2.5.1\include;C:\thor-v2.0-sdk\include;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\imgui-sfml-master;C:\imgui-master;C:\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;C:\thor-v2.0-sdk\src;C:\thor-v2.0-sdk\extlibs;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,15 +123,16 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include;C:\thor-v2.0-sdk\include;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include;C:\thor-v2.0-sdk\include;C:\thor-v2.0-sdk\extlibs\aurora\include;C:\imgui-sfml-master;C:\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;C:\thor-v2.0-sdk\src;C:\thor-v2.0-sdk\extlibs;C:\thor-v2.0-sdk\extlibs\aurora\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -135,6 +140,7 @@
     <ClCompile Include="ApplicationInformation.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BouncyBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CollisionEntity.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -150,13 +156,13 @@
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOReading.cpp" />
+    <ClCompile Include="Level01.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveEntity.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="ScreenEffect.cpp" />
     <ClCompile Include="ScreenFade.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
   </ItemGroup>
@@ -165,6 +171,7 @@
     <ClInclude Include="ApplicationInformation.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BouncyBullet.h" />
     <ClInclude Include="CollisionEntity.h" />
     <ClInclude Include="CompHeader.h" />
     <ClInclude Include="Enemy.h" />
@@ -184,12 +191,13 @@
     <ClInclude Include="IUpdate.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Level01.h" />
     <ClInclude Include="MoveEntity.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="SaveGameManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="ScreenEffect.h" />
+    <ClInclude Include="Overlay.h" />
     <ClInclude Include="ScreenFade.h" />
     <ClInclude Include="ScrollingBackground.h" />
     <ClInclude Include="TextureManager.h" />

@@ -9,6 +9,11 @@ Scene::~Scene()
 {
 }
 
+
+void Scene::StartScene(PlayerCharacter& playerCharacter)
+{
+}
+
 bool Scene::LoadSceneContents()
 {
     return true;

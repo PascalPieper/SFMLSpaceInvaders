@@ -1,10 +1,11 @@
 #pragma once
 #include "IPlayerCharacter.h"
+#include "HealthEntity.h"
 #include <iostream>
-class PlayerCharacter : public IPlayerCharacter
+class PlayerCharacter : public HealthEntity, IPlayerCharacter
 {
 public:
-	PlayerCharacter();
+	PlayerCharacter(sf::Vector2f spawn_position);
 	// Inherited via IPlayerCharacter
 	virtual void MoveLeft() override;
 	virtual void MoveRight() override;

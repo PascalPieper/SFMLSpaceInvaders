@@ -9,8 +9,8 @@ Bullet::Bullet(sf::Vector2f SpawnPosition) : CollisionEntity(SpawnPosition)
 	_MovementSpeed = 5;
 	_AccelerationSpeed = 0.1f;
 	_AccelerationIncrease = 0.05f;
-	_collisionIndex = 0;
-	CollisionBox.setSize(sf::Vector2f{ 4.f,4.f });
+	CollisionIndex = 0;
+	//CollisionBox.setSize(sf::Vector2f{ 4.f,4.f });
 }
 
 void Bullet::Move()
@@ -21,8 +21,5 @@ void Bullet::Move()
 
 void Bullet::Update()
 {
-	if (_isActive)
-	{
 		Move();
-	}
 }

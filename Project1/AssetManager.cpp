@@ -20,13 +20,8 @@ sf::Texture& AssetManager::LoadTexture(std::string name, std::string filePath)
 
 		if (texture.loadFromFile(filePath))
 		{
-			std::cout << _textures.size();
 			return texture;
-			//auto& texture = _textures[filePath];
-			
-			//this->_textures[name] = tex;
 		}
-		//return _textures.find(name)->second;
 	}
 
 }
@@ -39,8 +34,3 @@ bool AssetManager::UnLoadTexture(std::string name)
 	}
 	return false;
 }
-
-
-//void AssetManager::LoadFont(std::string name, std::string filePath)
-//{
-//}

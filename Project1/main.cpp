@@ -40,100 +40,126 @@ int main()
     return 0;
 }
 */
-#include <SFML/OpenGL.hpp>
+
 #include "imgui.h"
 #include "imgui-SFML.h"
-
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Audio.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 #include "CompHeader.h"
 #include "ScreenFade.h"
+#include "Enemy.h"
+#include "BouncyBullet.h"
+#include "InputManager.h"
+#include "PlayerCharacter.h"
+#include "AudioManager.h"
+
 int main()
 {
-    GameManager gm;
-    mat_m::SaveGameManager sgm("test");
-    AssetManager am;
-    gm.pSaveGameManager = &sgm;
-    gm.pAssetManager = &am;
+#pragma region GameManagerSetup
+	auto gm = std::make_shared<GameManager>();
+    auto save_game_manager = std::make_shared<mat_m::SaveGameManager>("Morus Kara");
+    auto asset_manager = std::make_shared<AssetManager>();
+    auto audio_manager = std::make_shared<AudioManager>();
+    gm->pSaveGameManager = save_game_manager;
+    gm->pAssetManager = asset_manager;
+    gm->pAudioManager = audio_manager;
 
-    sf::RenderWindow window(sf::VideoMode(360, 200), "SFML works!");
-    window.setFramerateLimit(300);
-    window.setVerticalSyncEnabled(false);
+    sf::RenderWindow window(sf::VideoMode(360, 203), "Morus Kara");
+    window.setKeyRepeatEnabled(false);
+    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
     window.setSize(sf::Vector2u{ 1920, 1080 });
+#pragma endregion GameManagerSetup
+
+#pragma region backgroundInit
     ImGui::SFML::Init(window);
-    sf::Color bgColor;
-    auto test = gm.CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 });
-    sf::Vector2f vectortest = { 1.f, 2.f };
-    sf::Color colortest = {0,0,0,255 };
-    //auto screenfade = gm.CreateEntity<ScreenFade>(vectortest, colortest, 5.5f, (sf::Vector2f)window.getSize());
+    auto Background01 = 
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/1_BG_Sky_duplicated.png", "Background01", 0);
+    auto Background02 =
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/2_Clouds_duplicated.png", "Background02", 12.f);
+    auto Background03 =
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/3_Mountain_duplicated.png", "Background03", 35.f);
+    auto Background04 =
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/4_Dune_1_duplicated.png", "Background04", 80.f);
+    auto Background05 =
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/5_Dune_2_duplicated.png", "Background05", 120.f);
+    auto Background06 =
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/6_Dune_3_duplicated.png", "Background06", 183.f);
+	
+    gm->pAudioManager->PlayMusic("AnikInvaders.wav");
+    auto Player = gm->CreateEntity<PlayerCharacter>(sf::Vector2f{ 0,0 });
 
-    float color[3] = { 0.f, 0.f, 0.f };
+#pragma endregion backgroundInit
 
-    // let's use char array as buffer, see next part
-    // for instructions on using std::string with ImGui
-    char windowTitle[255] = "ImGui + SFML = <3";
-
-    window.setTitle(windowTitle);
-    window.resetGLStates(); // call it if you only draw ImGui. Otherwise not needed.
+    //window.resetGLStates();
+	
     sf::Clock deltaClock;
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
-
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
-
         ImGui::SFML::Update(window, deltaClock.restart());
-
+#pragma region ImGuiDebugging
         ImGui::Begin("Sample window"); // begin window
-
-                                       // Background color edit
-        if (ImGui::ColorEdit3("Background color", color)) {
-            // this code gets called if color value changes, so
-            // the background color is upgraded automatically!
-            bgColor.r = static_cast<sf::Uint8>(color[0] * 255.f);
-            bgColor.g = static_cast<sf::Uint8>(color[1] * 255.f);
-            bgColor.b = static_cast<sf::Uint8>(color[2] * 255.f);
-        }
-        float f;
-        Entity aentity(sf::Vector2f{ 0,0 });
-
-        if (ImGui::SliderFloat("float", &f, 0.0f, 900.0f))
+        if (ImGui::Button("Spawn Enemy")) 
         {
-            //test->SetActive(false);
-            test->SetMovementspeed(f);
+            gm->CreateEntity<Enemy>(sf::Vector2f{ 300, 5 });
         }
-       
-        if (ImGui::Button("Toggle Background"))
+        float bgspeed01;
+        if (ImGui::SliderFloat("Background01", &bgspeed01, 0, 1000.f))
         {
-            bool toggle = test->GetActiveState();
-            toggle = !toggle;
-            test->SetActive(toggle);
+            Background01->SetMovementspeed(bgspeed01);
         }
-        // Window title text edit
-        ImGui::InputText("Window title", windowTitle, 255);
-
+        float bgspeed02;
+        if (ImGui::SliderFloat("Background02", &bgspeed02, 0, 1000.f))
+        {
+            Background02->SetMovementspeed(bgspeed02);
+        }
+        float bgspeed03;
+        if (ImGui::SliderFloat("Background03", &bgspeed03, 0, 1000.f))
+        {
+            Background03->SetMovementspeed(bgspeed03);
+        }
+        float bgspeed04;
+        if (ImGui::SliderFloat("Background04", &bgspeed04, 0, 1000.f))
+        {
+            Background04->SetMovementspeed(bgspeed04);
+        }
+        float bgspeed05;
+        if (ImGui::SliderFloat("Background05", &bgspeed05, 0, 1000.f))
+        {
+            Background05->SetMovementspeed(bgspeed05);
+        }
+        float bgspeed06;
+        if (ImGui::SliderFloat("Background06", &bgspeed06, 0, 1000.f))
+        {
+            Background06->SetMovementspeed(bgspeed06);
+        }
         if (ImGui::Button("Spawn Bullet"))
         {
             std::cout << window.getDefaultView().getSize().x;
-            //gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ (float)window.getSize().x, (float)window.getSize().y / 2 });
-            gm.CreateEntity<AcceleratedBullet>(sf::Vector2f{ 360, 100});
-            //gm.CreateEntity<Bullet>(sf::Vector2f{});
-            //window.setTitle(windowTitle);
+            auto bullet = gm->CreateEntity<AcceleratedBullet>(sf::Vector2f{ 360, 100});
         }
-        ImGui::End(); // end window
-        gm.Update();
-        window.clear(bgColor); // fill background with color
-        gm.Draw(window);
-        //window.draw(screenfade->rect);
+        if (ImGui::Button("Spawn BouncyBullet"))
+        {
+            std::cout << window.getDefaultView().getSize().x;
+            gm->CreateEntity<BouncyBullet>(sf::Vector2f{ 360, 100 });
+        }
+#pragma endregion ImGuiDebugging
+    	
+        ImGui::End();
+        gm->Update();
+        window.clear();
+        gm->Draw(window);
         ImGui::SFML::Render(window);
-        
         window.display();
-        gm.RefreshDeltatime();
+        gm->RefreshDeltatime();
     }
 
     ImGui::SFML::Shutdown();

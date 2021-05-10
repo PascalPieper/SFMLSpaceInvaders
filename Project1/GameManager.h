@@ -5,16 +5,19 @@
 #include "AssetManager.h"
 #include <memory>
 #include <vector>
+#include <array>
+#include "AudioManager.h"
 class Entity;
+//class CollisionEntity;
 class GameManager
 {
 public:
 	GameManager();
 
 public:
-	mat_m::SaveGameManager* pSaveGameManager;
-	AssetManager* pAssetManager;
-	
+	std::shared_ptr<mat_m::SaveGameManager> pSaveGameManager;
+	std::shared_ptr<AssetManager> pAssetManager;
+	std::shared_ptr<AudioManager> pAudioManager;
 
 private:
 	sf::Clock clock;
@@ -27,43 +30,135 @@ public:
 	void RefreshDeltatime();
 	void SortByDrawIndex();
 
+	std::map<std::string, std::shared_ptr<Entity>> InactivePollings;
+
+	//Vectors for Collision detection
+	std::array <std::vector <std::shared_ptr<Entity>>, 8> CollisionListings;
+
+	//std::vector <Entity*> CollisionListings[8];
+
+	void RegisterToIndex(unsigned int index, std::shared_ptr<Entity> entity);
+
+	//void RegisterToCollision(std::vector<unsigned int> index);
+	//virtual std::vector<unsigned int>& RegisterEntiyCollisionTargets();
+	//template<typename T>
+	//std::shared_ptr<T> RequestPollEntity(std::string UniquePollName, sf::Vector2f position);
+
 
 	std::shared_ptr<Entity> getEntity(unsigned int id);
 
 	template<typename T>
-	std::shared_ptr<T> CreateEntity(sf::Vector2f SpawnPosition);
+	std::shared_ptr<T> CreateEntity(sf::Vector2f spawn_position);
 
-	template<typename T>
-	std::shared_ptr<T> CreateEntity(sf::Vector2f SpawnPosition, sf::Color color, float FadeDuration, sf::Vector2f size);
-	//std::shared_ptr<Entity> CreateEntity(sf::Vector2f SpawnPosition);
+	//template<typename T>
+	//std::shared_ptr<T> CreateEntity(sf::Vector2f spawn_position, std::string texture_path, std::string texture_name);
+	template<typename T, typename  A>
+	inline std::shared_ptr<T> CreateEntity(sf::Vector2f spawn_position, A param_a);
+	
+	template<typename T, typename  A, typename B>
+	inline std::shared_ptr<T> CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b);
 
-	//std::shared_ptr<Entity> CreateBullet(sf::Vector2f SpawnPosition);
+	template<typename T, typename  A, typename B, typename C>
+	inline std::shared_ptr<T> CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b, C param_c);
+	
+	template<typename T, typename  A, typename B, typename C, typename D>
+	inline std::shared_ptr<T> CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b, C param_c, D param_d);
+	
+	//template<typename T>
+	//std::shared_ptr<T> CreateScreenEffect(sf::Vector2f SpawnPosition);
+
 	void Update();
 	void Draw(sf::RenderWindow &window);
 };
 
+
+
 template<typename T>
-inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f SpawnPosition)
+inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position)
 {
-	std::shared_ptr<T> NewEntity = std::make_shared<T>(SpawnPosition);
+	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position);
 	NewEntity->pGameManager = this;
 	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
+	NewEntity->SetID(count);
 	Entities.insert({ count, NewEntity });
-	NewEntity->SetPosition(SpawnPosition);
+	NewEntity->RegisterEntity();
 	count++;
+	NewEntity->SetPosition(spawn_position);
+	return NewEntity;
+}
+
+template <typename T, typename A>
+std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A param_a)
+{
+	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position, param_a);
+	NewEntity->pGameManager = this;
+	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
+	NewEntity->SetID(count);
+	Entities.insert({ count, NewEntity });
+	NewEntity->RegisterEntity();
+	count++;
+	NewEntity->SetPosition(spawn_position);
+	return NewEntity;
+}
+
+template<typename T, typename  A, typename B>
+inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b)
+{
+	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position, param_a, param_b);
+	NewEntity->pGameManager = this;
+	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
+	NewEntity->SetID(count);
+	Entities.insert({ count, NewEntity });
+	NewEntity->RegisterEntity();
+	count++;
+	NewEntity->SetPosition(spawn_position);
+	return NewEntity;
+}
+
+template <typename T, typename A, typename B, typename C>
+std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b, C param_c)
+{
+	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position, param_a, param_b, param_c);
+	NewEntity->pGameManager = this;
+	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
+	NewEntity->SetID(count);
+	Entities.insert({ count, NewEntity });
+	NewEntity->RegisterEntity();
+	count++;
+	NewEntity->SetPosition(spawn_position);
+	return NewEntity;
+}
+
+template <typename T, typename A, typename B, typename C, typename D>
+std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b, C param_c, D param_d)
+{
+	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position, param_a, param_b, param_c, param_d);
+	NewEntity->pGameManager = this;
+	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
+	NewEntity->SetID(count);
+	Entities.insert({ count, NewEntity });
+	NewEntity->RegisterEntity();
+	count++;
+	NewEntity->SetPosition(spawn_position);
 	return NewEntity;
 }
 
 /*
 template<typename T>
-inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f SpawnPosition, sf::Color color, float FadeDuration, sf::Vector2f size)
+inline std::shared_ptr<T> GameManager::RequestPollEntity(std::string UniquePollName, sf::Vector2f position)
 {
-	std::shared_ptr<T> NewEntity = std::make_shared<T>(SpawnPosition, color, FadeDuration, size);
-	NewEntity->pGameManager = this;
-	NewEntity->EntitySprite.setTexture(pAssetManager->LoadTexture(NewEntity->TextureName, NewEntity->TEXTURE_PATH));
-	Entities.insert({ count, NewEntity });
-	NewEntity->EntitySprite.setPosition(SpawnPosition);
-	count++;
-	return NewEntity;
+	auto KeyValuePair = InactivePollings.find(UniquePollName);
+	if (KeyValuePair != InactivePollings.end())
+	{
+		auto& result = KeyValuePair->second;
+		result->SetPosition(position);
+		result->SetActiveAndRendered(true);
+		//result->reset();
+		return result;
+	}
+	else
+	{
+		return CreateEntity<T>(position);
+	}
 }
 */

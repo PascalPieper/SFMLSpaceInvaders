@@ -3,11 +3,12 @@
 class ScrollingBackground : public MoveEntity
 {
 public:
-	ScrollingBackground(sf::Vector2f SpawnPosition);
+	ScrollingBackground(sf::Vector2f spawn_position, std::string filepath, std::string texture_name, float speed);
 
 protected:
 	const float JUMPBACK_START = 0;
-	const float JUMPBACK_MAX = 424;
+	int JUMPBACK_MAX = 418;
+	const std::string filepath;
 
 public:
 	void ScrollRight();

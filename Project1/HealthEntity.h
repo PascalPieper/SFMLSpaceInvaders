@@ -11,7 +11,7 @@ protected:
 
 	//Getters
 public:
-	unsigned int GetHealth() { return _health; }
+	unsigned int GetHealth() const { return _health; }
 
 	//Setters
 public:

@@ -1,19 +1,17 @@
 #include "SceneManager.h"
-
+#include "IManager.h"
 SceneManager::SceneManager(sf::RenderWindow window)
 {
 }
 
 void SceneManager::LoadScene(unsigned int SceneNumber)
 {
-	if (_scenes[SceneNumber].LoadSceneContents())
-	{
-		return;
-	}
-	else
-	{
-		throw std::invalid_argument("[SceneManager] Scene was unable to Load");
-	}
+
+	//_scenes[SceneNumber].
 	
 	
+}
+
+void SceneManager::Update()
+{
 }

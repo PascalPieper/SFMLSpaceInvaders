@@ -19,6 +19,7 @@ void ScreenFade::Update()
 	}
 	else
 	{
+		//onFade();
 		return;
 	}
 	/*

@@ -19,6 +19,11 @@ void GameManager::SortByDrawIndex()
 
 }
 
+void GameManager::RegisterToIndex(unsigned int index, std::shared_ptr<Entity> entity)
+{
+	CollisionListings[index].push_back(entity);
+}
+
 std::shared_ptr<Entity> GameManager::getEntity(unsigned int id)
 {
 	return Entities.find(id)->second;
@@ -61,7 +66,7 @@ void GameManager::Update()
 {
 	for (int i = 0; i < Entities.size(); i++)
 	{
-		if (Entities[i]->GetActiveState())
+		if (Entities[i]->GetUpdateActiveState())
 		{
 			Entities[i]->Update();
 		}
@@ -74,7 +79,7 @@ void GameManager::Draw(sf::RenderWindow &window)
 {
 	for (int i = 0; i < Entities.size(); i++)
 	{
-		if (Entities[i]->GetActiveState())
+		if (Entities[i]->GetRenderActiveState())
 		{
 			window.draw(Entities[i]->GetEntitySprite());
 		}

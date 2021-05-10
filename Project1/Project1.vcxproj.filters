@@ -45,11 +45,17 @@
     <Filter Include="Header Files\NewFilter1">
       <UniqueIdentifier>{522c8d49-2256-45bb-8e5b-ad44a9146262}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entity Templates\Player">
+      <UniqueIdentifier>{d1e38e5b-3330-480c-b65a-75486ef26644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes\Levels">
+      <UniqueIdentifier>{fac1d77c-29ae-4aec-a2f5-b314ff21e021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\main">
+      <UniqueIdentifier>{6b3a7577-d869-479f-83a9-47ad49cf7086}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationInformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,12 +101,6 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollingBackground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Header Files\Manager</Filter>
     </ClCompile>
@@ -125,11 +125,23 @@
     <ClCompile Include="AcceleratedBullet.cpp">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="ScreenFade.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Header Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ScreenEffect.cpp">
+    <ClCompile Include="Level01.cpp">
+      <Filter>Header Files\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="BouncyBullet.cpp">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenFade.cpp">
       <Filter>Header Files\ScreenEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\main</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollingBackground.cpp">
+      <Filter>Header Files\Background</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,9 +158,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AudioManager.h">
@@ -226,8 +235,17 @@
     <ClInclude Include="ScreenFade.h">
       <Filter>Header Files\ScreenEffects</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenEffect.h">
+    <ClInclude Include="Overlay.h">
       <Filter>Header Files\ScreenEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCharacter.h">
+      <Filter>Header Files\Entity Templates\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Level01.h">
+      <Filter>Header Files\Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="BouncyBullet.h">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,18 +1,22 @@
 #include "ScrollingBackground.h"
-ScrollingBackground::ScrollingBackground(sf::Vector2f SpawnPosition) : MoveEntity(SpawnPosition)
+
+#include <utility>
+
+ScrollingBackground::ScrollingBackground(const sf::Vector2f spawn_position, const std::string filepath, std::string texture_name, const float speed)
+: MoveEntity(spawn_position), filepath(filepath)
 
 {
-	tag = Tag::BULLET;
-	TEXTURE_PATH = "Assets/Background/ScrollingBackground01.png";
-	TextureName = "Background01";
+	TEXTURE_PATH = filepath;
+	tag = Tag::BACKGROUND;
+	TextureName = texture_name;
+	
 	//_DrawLayer = 0;
-	_MovementSpeed = 120;
+	_MovementSpeed = speed;
 }
 void ScrollingBackground::ScrollRight()
 {
 	if (EntitySprite.getPosition().x > -JUMPBACK_MAX)
 	{
-		//std::cout << EntitySprite.getPosition().x;
 		EntitySprite.move(-_MovementSpeed * pGameManager->GetDeltaTime(), 0);
 	}
 	else

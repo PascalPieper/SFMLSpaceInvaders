@@ -4,13 +4,15 @@ AcceleratedBullet::AcceleratedBullet(sf::Vector2f SpawnPosition) : Bullet (Spawn
 {
 	tag = Tag::BULLET;
 	TEXTURE_PATH = "Assets/Sprites/Bullet.png";
+
 	TextureName = "BaseBullet";
+	UniqueEntityName = "AcceleratedBullet";
 	//_DrawLayer = 5;
-	_MovementSpeed = 2;
-	_AccelerationSpeed = 0.1f;
-	_AccelerationIncrease = 1.f;
-	_collisionIndex = 0;
-	CollisionBox.setSize(sf::Vector2f{ 4.f,4.f });
+	_MovementSpeed;
+	_AccelerationSpeed;
+	_AccelerationIncrease;
+	CollisionIndex = 0;
+	//CollisionBox.s(sf::Vector2f{ 4.f,4.f });
 }
 
 void AcceleratedBullet::Move()
@@ -21,5 +23,8 @@ void AcceleratedBullet::Move()
 
 void AcceleratedBullet::Update()
 {
+	ImGui::SliderFloat("Basespeed", &_MovementSpeed, 0, 20);
+	ImGui::SliderFloat("AccelerationSpeed", &_AccelerationSpeed, 0, 20);
+	ImGui::SliderFloat("AccelerationIncrease", &_AccelerationIncrease, 0, 20);
 	Move();
 }
