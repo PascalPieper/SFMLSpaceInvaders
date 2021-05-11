@@ -102,7 +102,7 @@ std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A para
 }
 
 template<typename T, typename  A, typename B>
-inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b)
+std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A param_a, B param_b)
 {
 	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position, param_a, param_b);
 	NewEntity->pGameManager = this;

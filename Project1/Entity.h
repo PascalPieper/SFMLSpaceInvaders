@@ -38,9 +38,6 @@ protected:
 	//Layer objects
 	//unsigned int _DrawLayer = 0;
 
-	//DrawLayer _DrawLayer = BACKGROUND_01;
-	//sf::Transform &ParentPosition;
-
 	//Predifned tag that the Entity receives
 	Tag::EntityTag tag = Tag::ENEMY;
 	sf::Texture EntityTexture;

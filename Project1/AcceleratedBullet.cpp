@@ -11,7 +11,7 @@ AcceleratedBullet::AcceleratedBullet(sf::Vector2f SpawnPosition) : Bullet (Spawn
 	_MovementSpeed;
 	_AccelerationSpeed;
 	_AccelerationIncrease;
-	CollisionIndex = 0;
+	CollisionIndex = 2;
 	//CollisionBox.s(sf::Vector2f{ 4.f,4.f });
 }
 

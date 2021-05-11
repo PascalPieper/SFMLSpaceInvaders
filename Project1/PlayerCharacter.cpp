@@ -10,16 +10,17 @@ PlayerCharacter::PlayerCharacter(sf::Vector2f spawn_position) : HealthEntity(spa
 	_AccelerationSpeed = 0.1f;
 	_AccelerationIncrease = 0.05f;
 	CollisionIndex = 0;
-	//CollisionBox.setSize(sf::Vector2f{ 4.f,4.f });
+	CollisionBox.setSize(sf::Vector2f{ 5.0f,5.0f });
 }
 
-void PlayerCharacter::MoveLeft()
+void PlayerCharacter::MoveUp()
 {
-	//std::cout << "Moving left!";
+	Move(0.f, -1.0f);
 }
 
-void PlayerCharacter::MoveRight()
+void PlayerCharacter::MoveDown()
 {
+	Move(0.f, 1.0f);
 }
 
 void PlayerCharacter::Block()
@@ -36,4 +37,13 @@ void PlayerCharacter::Jump()
 
 void PlayerCharacter::ChargeAttack()
 {
+	//pGameManager->CreateEntity<>()
+}
+
+void PlayerCharacter::Update()
+{
+	if (CheckCollision(2))
+	{
+		std::cout << "Collision detected!";
+	}
 }

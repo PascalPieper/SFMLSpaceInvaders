@@ -13,7 +13,7 @@ public:
 
 	void RegisterEntity() override;
 	void VerifyContinousCollisions();
-	bool DetectCollision(unsigned int CollisionLayer);
+	bool CheckCollision(unsigned int CollisionLayer);
 
 	//Rectangle Hitbox
 public:
@@ -25,5 +25,5 @@ public:
 
 public:
 	unsigned int GetCollisionIndex() const { return CollisionIndex; }
-
+	void Move(float x, float y) override;
 };

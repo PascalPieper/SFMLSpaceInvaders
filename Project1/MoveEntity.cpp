@@ -9,3 +9,8 @@ void MoveEntity::MoveToTarget(Entity target)
 {
 	//target.EntitySprite.getPosition();
 }
+
+void MoveEntity::Move(float x, float y)
+{
+	this->EntitySprite.move(x, y);
+}

@@ -28,5 +28,6 @@ public:
 protected:
 	//NOT YET IMPLEMENTED
 	void MoveToTarget(Entity target);
+	virtual void Move(float x, float y);
 
 };

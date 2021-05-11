@@ -24,7 +24,7 @@ void CollisionEntity::VerifyContinousCollisions()
 
 
 
-bool CollisionEntity::DetectCollision(unsigned int CollisionLayer)
+bool CollisionEntity::CheckCollision(unsigned int CollisionLayer)
 {
 	auto &Clist = pGameManager->CollisionListings[CollisionLayer];
 	VerifyContinousCollisions();
@@ -48,4 +48,10 @@ bool CollisionEntity::DetectCollision(unsigned int CollisionLayer)
 	return false;
 
 
+}
+
+void CollisionEntity::Move(float x, float y)
+{
+	MoveEntity::Move(x, y);
+	this->CollisionBox.move(x, y);
 }

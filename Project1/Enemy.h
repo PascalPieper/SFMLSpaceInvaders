@@ -8,7 +8,7 @@ public:
 	Enemy(sf::Vector2f SpawnPosition);
 
 protected:
-	sf::Vector2f bullet_spawn_offset_ { -0.4, 27.f };
+	sf::Vector2f bullet_spawn_offset_ { -0.4f, 27.f };
 	sf::Clock _shootClock;
 	sf::Clock _moveClock;
 	bool _AttackOnCD = true;
