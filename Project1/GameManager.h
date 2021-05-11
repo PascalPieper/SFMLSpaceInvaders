@@ -14,6 +14,10 @@ class GameManager
 public:
 	GameManager();
 
+
+public:
+	const int screen_width_ = 360;
+	const int screen_height_ = 203;
 public:
 	std::shared_ptr<mat_m::SaveGameManager> pSaveGameManager;
 	std::shared_ptr<AssetManager> pAssetManager;
@@ -22,7 +26,9 @@ public:
 private:
 	sf::Clock clock;
 	float _deltaTime = 0;
+	//std::map<unsigned int, std::shared_ptr<Entity>> Entities;
 	std::map<unsigned int, std::shared_ptr<Entity>> Entities;
+	
 	std::vector<unsigned int> DrawEnties;
 	unsigned int count = 0;
 public:
@@ -38,13 +44,13 @@ public:
 	//std::vector <Entity*> CollisionListings[8];
 
 	void RegisterToIndex(unsigned int index, std::shared_ptr<Entity> entity);
-
+	void UnRegisterFromIndex(unsigned int index, std::shared_ptr<Entity> entity);
 	//void RegisterToCollision(std::vector<unsigned int> index);
 	//virtual std::vector<unsigned int>& RegisterEntiyCollisionTargets();
 	//template<typename T>
 	//std::shared_ptr<T> RequestPollEntity(std::string UniquePollName, sf::Vector2f position);
 
-
+	void RemoveEntity(unsigned int ID);
 	std::shared_ptr<Entity> getEntity(unsigned int id);
 
 	template<typename T>

@@ -10,17 +10,28 @@ PlayerCharacter::PlayerCharacter(sf::Vector2f spawn_position) : HealthEntity(spa
 	_AccelerationSpeed = 0.1f;
 	_AccelerationIncrease = 0.05f;
 	CollisionIndex = 0;
-	CollisionBox.setSize(sf::Vector2f{ 5.0f,5.0f });
+	collision_box_offset_ = sf::Vector2f{ 0, 15.f };
+	collision_box_.setSize(sf::Vector2f{ 41.0f,20.0f });
 }
 
 void PlayerCharacter::MoveUp()
 {
-	Move(0.f, -1.0f);
+	if (this->EntitySprite.getPosition().y > 0)
+	{
+		
+		Move(0.f, -1.0f);
+	}
+	
 }
 
 void PlayerCharacter::MoveDown()
 {
-	Move(0.f, 1.0f);
+	std::cout << this->EntitySprite.getPosition().y;
+	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ - this->EntitySprite.getTextureRect().height)
+	{
+		Move(0.f, 1.0f);
+	}
+	
 }
 
 void PlayerCharacter::Block()
@@ -42,6 +53,12 @@ void PlayerCharacter::ChargeAttack()
 
 void PlayerCharacter::Update()
 {
+	
+	if (ImGui::SliderFloat("Hitbox player", &collision_box_size_y, -100, 100))
+	{
+		collision_box_.setSize(sf::Vector2f{ collision_box_size_x , collision_box_size_y });
+	}
+	//this->collision_box_.setPosition(this->EntitySprite.getPosition());
 	if (CheckCollision(2))
 	{
 		std::cout << "Collision detected!";

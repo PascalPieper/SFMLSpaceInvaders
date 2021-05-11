@@ -34,3 +34,21 @@ bool AssetManager::UnLoadTexture(std::string name)
 	}
 	return false;
 }
+
+sf::Font& AssetManager::LoadFont(std::string name, std::string filePath)
+{
+	auto KeyValuePair = _fonts.find(name);
+	if (KeyValuePair != _fonts.end())
+	{
+		return (KeyValuePair->second);
+	}
+	else
+	{
+		auto& texture = _fonts[name];
+
+		if (texture.loadFromFile(filePath))
+		{
+			return texture;
+		}
+	}
+}

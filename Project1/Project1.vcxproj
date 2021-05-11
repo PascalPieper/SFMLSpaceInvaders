@@ -159,7 +159,9 @@
     <ClCompile Include="Level01.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveEntity.cpp" />
+    <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="PlayerGui.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -193,7 +195,9 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Level01.h" />
     <ClInclude Include="MoveEntity.h" />
+    <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="PlayerGui.h" />
     <ClInclude Include="SaveGameManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

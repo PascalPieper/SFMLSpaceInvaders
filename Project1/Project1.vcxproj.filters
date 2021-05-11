@@ -42,9 +42,6 @@
     <Filter Include="Header Files\ScreenEffects">
       <UniqueIdentifier>{0d0fb123-5a57-403e-abd8-e24ad885110a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\NewFilter1">
-      <UniqueIdentifier>{522c8d49-2256-45bb-8e5b-ad44a9146262}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Entity Templates\Player">
       <UniqueIdentifier>{d1e38e5b-3330-480c-b65a-75486ef26644}</UniqueIdentifier>
     </Filter>
@@ -143,6 +140,12 @@
     <ClCompile Include="ScrollingBackground.cpp">
       <Filter>Header Files\Background</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -158,9 +161,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
@@ -246,6 +246,15 @@
     </ClInclude>
     <ClInclude Include="BouncyBullet.h">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGui.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

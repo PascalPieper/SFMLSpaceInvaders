@@ -24,6 +24,17 @@ void GameManager::RegisterToIndex(unsigned int index, std::shared_ptr<Entity> en
 	CollisionListings[index].push_back(entity);
 }
 
+void GameManager::UnRegisterFromIndex(unsigned index, std::shared_ptr<Entity> entity)
+{
+	//CollisionListings[index].;
+}
+
+void GameManager::RemoveEntity(unsigned ID)
+{
+	auto result = Entities.find(ID);
+	Entities.erase(result);
+}
+
 std::shared_ptr<Entity> GameManager::getEntity(unsigned int id)
 {
 	return Entities.find(id)->second;
@@ -69,6 +80,7 @@ void GameManager::Update()
 		if (Entities[i]->GetUpdateActiveState())
 		{
 			Entities[i]->Update();
+			Entities[i]->collision_box_.setPosition(Entities[i]->GetEntitySprite().getPosition() + Entities[i]->collision_box_offset_);
 		}
 	}
 }
@@ -82,6 +94,7 @@ void GameManager::Draw(sf::RenderWindow &window)
 		if (Entities[i]->GetRenderActiveState())
 		{
 			window.draw(Entities[i]->GetEntitySprite());
+			window.draw(Entities[i]->collision_box_);
 		}
 		
 	}

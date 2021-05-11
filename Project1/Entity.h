@@ -34,9 +34,7 @@ protected:
 	//used to find the Object
 	unsigned int UniqueEntityID = 0;
 
-	//The drawing layer that decides if an Entity is rendered behind or in front of other
-	//Layer objects
-	//unsigned int _DrawLayer = 0;
+
 
 	//Predifned tag that the Entity receives
 	Tag::EntityTag tag = Tag::ENEMY;
@@ -50,19 +48,26 @@ protected:
 	std::string UniqueEntityName = "TestName";
 
 public:
+	//The drawing layer that decides if an Entity is rendered behind or in front of other
+//Layer objects
+	unsigned int _DrawLayer = 0;
 	//Register to different Managers after being created by the GameManager
 	virtual void RegisterEntity() {};
 
-	sf::RectangleShape CollisionBox;
-	void SetID(unsigned int id) { UniqueEntityID = id; }
+	sf::RectangleShape collision_box_;
+	float collision_box_size_x;
+	float collision_box_size_y;
+	sf::Vector2f collision_box_offset_;
+	
+	void SetID(const unsigned int id) { UniqueEntityID = id; }
 	unsigned int GetID() const { return UniqueEntityID; }
 	void SetUpdateActiveState(bool state) { _isActive = state; }
 	void SetRenderActiveState(bool state) { _isRendered = state; }
 	void SetActiveAndRendered(bool state) {	_isActive = state; _isRendered = state;}
 	bool GetUpdateActiveState() const { return _isActive; }
 	bool GetRenderActiveState() const { return _isRendered; }
-	//void SetDrawLayer(unsigned int layer) {_DrawLayer = layer;}
-	//unsigned int GetDrawLayer() const {};
+	void SetDrawLayer(unsigned int layer) {_DrawLayer = layer;}
+	unsigned int GetDrawLayer() const {};
 
 	void SetSprite(sf::Sprite sprite) { EntitySprite = sprite;}
 	sf::Sprite& GetEntitySprite() { return EntitySprite; }
@@ -72,6 +77,5 @@ public:
 
 	void SetPosition(sf::Vector2f position) { EntitySprite.setPosition(position); }
 	virtual void Update();
-
 
 };

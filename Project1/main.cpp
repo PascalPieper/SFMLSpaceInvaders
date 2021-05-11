@@ -80,11 +80,13 @@ int main()
 #pragma region backgroundInit
     ImGui::SFML::Init(window);
     auto Background01 = 
-        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/1_BG_Sky_duplicated.png", "Background01", 0);
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/Night_Sky_duplicated.png", "Background01", 0);
+    auto Backgroundstar =
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/Stars_duplicated.png", "BackgroundStars", 7.f);
     auto Background02 =
-        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/2_Clouds_duplicated.png", "Background02", 12.f);
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/2_Clouds_duplicated.png", "Background02", 16.f);
     auto Background03 =
-        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/3_Mountain_duplicated.png", "Background03", 25.f);
+        gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/3_Mountain_duplicated.png", "Background03", 32.f);
     auto Background04 =
         gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/4_Dune_1_duplicated.png", "Background04", 55.f);
     auto Background05 =
@@ -92,7 +94,7 @@ int main()
     auto Background06 =
         gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/6_Dune_3_duplicated.png", "Background06", 200.f);
 	
-    gm->pAudioManager->PlayMusic("AnikInvaders.wav");
+    gm->pAudioManager->PlayMusic("Assets/Music/AnikInvaders.wav");
     auto Player = gm->CreateEntity<PlayerCharacter>(sf::Vector2f{ 20,0 });
     input_manager->p_player_ = Player;
 #pragma endregion backgroundInit

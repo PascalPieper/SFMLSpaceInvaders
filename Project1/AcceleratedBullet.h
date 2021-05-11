@@ -4,6 +4,6 @@ class AcceleratedBullet : public Bullet
 {
 public:
 	AcceleratedBullet(sf::Vector2f SpawnPosition);
-	void Move() override;
+	void FlyRight() override;
 	void Update() override;
 };

@@ -31,7 +31,7 @@ public:
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
-			p_player_->MoveDown();
+			p_player_->ChargeAttack();
 		}
 	}
 };

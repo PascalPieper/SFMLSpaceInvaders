@@ -14,7 +14,7 @@ BouncyBullet::BouncyBullet(sf::Vector2f SpawnPosition) : Bullet(SpawnPosition)
 }
 
 
-void BouncyBullet::Move()
+void BouncyBullet::FlyRight()
 {
 	if (EntitySprite.getPosition().y < 0 + EntitySprite.getTexture()->getSize().y / 4)
 	{
@@ -43,5 +43,5 @@ void BouncyBullet::Update()
 	ImGui::Text("y positon = %f", EntitySprite.getPosition().y);
 	ImGui::Text("x positon = %f", EntitySprite.getPosition().x);
 	ImGui::Text("%s", _direction ? "true" : "false");
-	Move();
+	FlyRight();
 }
