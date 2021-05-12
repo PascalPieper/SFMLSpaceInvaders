@@ -13,6 +13,7 @@
 #include <SFML/Window/Event.hpp>
 #include <charconv>
 #include <algorithm>
+#include <utility>
 #include <vector>
 
 class GameManager;
@@ -33,7 +34,6 @@ protected:
 	//The Unique ID that is bestowed upon every Entity upon creation that can be
 	//used to find the Object
 	unsigned int UniqueEntityID = 0;
-
 
 
 	//Predifned tag that the Entity receives
@@ -69,13 +69,16 @@ public:
 	void SetDrawLayer(unsigned int layer) {_DrawLayer = layer;}
 	unsigned int GetDrawLayer() const {};
 
-	void SetSprite(sf::Sprite sprite) { EntitySprite = sprite;}
+	void SetSprite(sf::Sprite sprite) { EntitySprite = std::move(sprite);}
 	sf::Sprite& GetEntitySprite() { return EntitySprite; }
 
 	std::string getTextureName() const { return TextureName; }
 	std::string getTexturePath() const { return TEXTURE_PATH; }
 
 	void SetPosition(sf::Vector2f position) { EntitySprite.setPosition(position); }
+	
+	virtual void Destroy();
+	
 	virtual void Update();
 
 };

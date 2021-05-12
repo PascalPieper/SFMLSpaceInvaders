@@ -10,6 +10,11 @@ Entity::~Entity()
 }
 
 
+void Entity::Destroy()
+{
+	pGameManager->RemoveEntity(this->GetID());
+}
+
 void Entity::Update()
 {
 }

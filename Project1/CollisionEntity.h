@@ -14,7 +14,7 @@ public:
 	void RegisterEntity() override;
 	void VerifyContinousCollisions();
 	bool CheckCollision(unsigned int CollisionLayer);
-
+	void Destroy() override;
 	//Rectangle Hitbox
 public:
 	

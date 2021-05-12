@@ -1,6 +1,4 @@
 #include "GameManager.h"
-#include "imgui.h"
-#include "imgui-SFML.h"
 class Entity;
 GameManager::GameManager() 
 	: _deltaTime(0)
@@ -24,15 +22,20 @@ void GameManager::RegisterToIndex(unsigned int index, std::shared_ptr<Entity> en
 	CollisionListings[index].push_back(entity);
 }
 
-void GameManager::UnRegisterFromIndex(unsigned index, std::shared_ptr<Entity> entity)
+void GameManager::UnRegisterFromIndex(unsigned index, unsigned int id)
 {
-	//CollisionListings[index].;
+	auto result = Entities.find(id)->second;
+	CollisionListings[index].erase(std::remove(CollisionListings[index].begin(), CollisionListings[index].end(), result), CollisionListings[index].end());
+	//CollisionListings[index].erase(std::remove_if(CollisionListings[index].begin(), CollisionListings[index].end(), [](std::shared_ptr<Entity>) {return nullptr; }), CollisionListings[index].end());
+	
 }
 
 void GameManager::RemoveEntity(unsigned ID)
 {
-	auto result = Entities.find(ID);
-	Entities.erase(result);
+	Entities.erase(entity_ids_in_scene_[ID]);
+	entity_ids_in_scene_.erase(std::remove(entity_ids_in_scene_.begin(), entity_ids_in_scene_.end(), ID), entity_ids_in_scene_.end());
+	
+
 }
 
 std::shared_ptr<Entity> GameManager::getEntity(unsigned int id)
@@ -75,12 +78,26 @@ std::shared_ptr<Entity> GameManager::CreateBullet(sf::Vector2f SpawnPosition)
 //Updates all Entities enlisted in the entities vector
 void GameManager::Update()
 {
-	for (int i = 0; i < Entities.size(); i++)
+	for (int i = 0; i < entity_ids_in_scene_.size(); i++)
 	{
-		if (Entities[i]->GetUpdateActiveState())
+		for (auto it = Entities.cbegin(), next_it = it; it != Entities.cend(); it = next_it)
 		{
-			Entities[i]->Update();
-			Entities[i]->collision_box_.setPosition(Entities[i]->GetEntitySprite().getPosition() + Entities[i]->collision_box_offset_);
+			++next_it;
+			if (it->second == nullptr)
+			{
+				Entities.erase(it);
+			}
+		}
+		auto ptr = Entities[entity_ids_in_scene_[i]];
+		if (ptr != nullptr)
+		{
+		if (ptr->GetUpdateActiveState())
+		{
+			ptr->collision_box_.setPosition(Entities[i]->GetEntitySprite().getPosition() + Entities[i]->collision_box_offset_);
+			ptr->Update();
+			
+		}
+
 		}
 	}
 }

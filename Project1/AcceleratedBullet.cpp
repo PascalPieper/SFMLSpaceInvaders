@@ -31,7 +31,6 @@ void AcceleratedBullet::Update()
 	FlyRight();
 	if (CheckCollision(0))
 	{
-		this->SetActiveAndRendered(false);
-		pGameManager->RemoveEntity(this->GetID());
+		Destroy();
 	}
 }

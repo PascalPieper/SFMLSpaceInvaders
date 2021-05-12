@@ -47,6 +47,13 @@ bool CollisionEntity::CheckCollision(unsigned int CollisionLayer)
 	return false;
 }
 
+void CollisionEntity::Destroy()
+{
+	pGameManager->UnRegisterFromIndex(CollisionIndex, this->GetID());
+	pGameManager->RemoveEntity(this->GetID());
+	
+}
+
 void CollisionEntity::Move(float x, float y)
 {
 	MoveEntity::Move(x, y);
