@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
+#include <functional>
 
 class GameManager;
 
@@ -27,10 +28,14 @@ public:
 	//GameManager Reference Pointer that is used to access all other
 	//Engine specific Manager classes
 	GameManager* pGameManager;
+
 protected:
 	bool _isRendered = true;
 	bool _isActive = true;
-
+	sf::Clock sprite_animation_clock_;
+	int sprite_animation_speed_ = 60;
+	int animation_sheet_width_ = 0;
+	
 	//The Unique ID that is bestowed upon every Entity upon creation that can be
 	//used to find the Object
 	unsigned int UniqueEntityID = 0;
@@ -40,7 +45,8 @@ protected:
 	Tag::EntityTag tag = Tag::ENEMY;
 	sf::Texture EntityTexture;
 	sf::Sprite EntitySprite;
-
+	
+	
 	//The directiory path on the harddrive to the texture that is applied to the Rect
 	std::string TEXTURE_PATH = "Assets/Images/rainerSmall.jpg";
 	std::string TextureName = "TestName";
@@ -58,6 +64,7 @@ public:
 	float collision_box_size_x;
 	float collision_box_size_y;
 	sf::Vector2f collision_box_offset_;
+	sf::IntRect texture_animation_offset{ 0,0,0,0 };
 	
 	void SetID(const unsigned int id) { UniqueEntityID = id; }
 	unsigned int GetID() const { return UniqueEntityID; }
@@ -76,7 +83,8 @@ public:
 	std::string getTexturePath() const { return TEXTURE_PATH; }
 
 	void SetPosition(sf::Vector2f position) { EntitySprite.setPosition(position); }
-	
+
+	virtual void ProgressAnimation();
 	virtual void Destroy();
 	
 	virtual void Update();

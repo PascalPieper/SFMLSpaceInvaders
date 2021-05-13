@@ -17,21 +17,18 @@ class GameManager
 public:
 	GameManager();
 
-
-public:
 	const int screen_width_ = 360;
 	const int screen_height_ = 203;
 public:
 	std::shared_ptr<mat_m::SaveGameManager> pSaveGameManager;
 	std::shared_ptr<AssetManager> pAssetManager;
 	std::shared_ptr<AudioManager> pAudioManager;
-
+	bool ShowCollisionBoxes = false;
 private:
 	sf::Clock clock;
 	float _deltaTime = 0;
 	//std::map<unsigned int, std::shared_ptr<Entity>> Entities;
 
-	std::vector<unsigned int> entity_ids_in_scene_;
 	std::map<unsigned int, std::shared_ptr<Entity>> Entities;
 	
 	std::vector<unsigned int> DrawEnties;
@@ -44,11 +41,11 @@ public:
 	std::map<std::string, std::shared_ptr<Entity>> InactivePollings;
 
 	//Vectors for Collision detection
-	std::array <std::vector <std::shared_ptr<Entity>>, 8> CollisionListings;
+	std::array <std::map <unsigned int, std::shared_ptr<Entity>>, 8> CollisionListings;
 
 	//std::vector <Entity*> CollisionListings[8];
 
-	void RegisterToIndex(unsigned int index, std::shared_ptr<Entity> entity);
+	void RegisterToIndex(unsigned int index, unsigned int id, std::shared_ptr<Entity> entity);
 	void UnRegisterFromIndex(unsigned int index, unsigned int id);
 	//void RegisterToCollision(std::vector<unsigned int> index);
 	//virtual std::vector<unsigned int>& RegisterEntiyCollisionTargets();
@@ -90,8 +87,8 @@ inline std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position)
 	std::shared_ptr<T> NewEntity = std::make_shared<T>(spawn_position);
 	NewEntity->pGameManager = this;
 	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
+	NewEntity->GetEntitySprite().setTextureRect(NewEntity->texture_animation_offset);
 	NewEntity->SetID(count);
-	entity_ids_in_scene_.push_back(count);
 	Entities.insert({ count, NewEntity });
 	NewEntity->RegisterEntity();
 	count++;
@@ -106,7 +103,6 @@ std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A para
 	NewEntity->pGameManager = this;
 	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
 	NewEntity->SetID(count);
-	entity_ids_in_scene_.push_back(count);
 	Entities.insert({ count, NewEntity });
 	NewEntity->RegisterEntity();
 	count++;
@@ -121,7 +117,6 @@ std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A para
 	NewEntity->pGameManager = this;
 	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
 	NewEntity->SetID(count);
-	entity_ids_in_scene_.push_back(count);
 	Entities.insert({ count, NewEntity });
 	NewEntity->RegisterEntity();
 	count++;
@@ -136,7 +131,6 @@ std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A para
 	NewEntity->pGameManager = this;
 	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
 	NewEntity->SetID(count);
-	entity_ids_in_scene_.push_back(count);
 	Entities.insert({ count, NewEntity });
 	NewEntity->RegisterEntity();
 	count++;
@@ -151,7 +145,6 @@ std::shared_ptr<T> GameManager::CreateEntity(sf::Vector2f spawn_position, A para
 	NewEntity->pGameManager = this;
 	NewEntity->GetEntitySprite().setTexture(pAssetManager->LoadTexture(NewEntity->getTextureName(), NewEntity->getTexturePath()));
 	NewEntity->SetID(count);
-	entity_ids_in_scene_.push_back(count);
 	Entities.insert({ count, NewEntity });
 	NewEntity->RegisterEntity();
 	count++;

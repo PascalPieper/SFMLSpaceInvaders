@@ -8,4 +8,7 @@ public:
 
 	virtual void FlyRight();
 	virtual void Update();
+	virtual void OutOfBoundsCheck();
+protected:
+	float angle_multi_;
 };

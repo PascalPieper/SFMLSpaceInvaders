@@ -55,6 +55,7 @@ int main()
 #include "PlayerCharacter.h"
 #include "AudioManager.h"
 #include "InputManager.h"
+#include "PlayerGui.h"
 
 int main()
 {
@@ -71,7 +72,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(360, 203), "Morus Kara");
     window.setFramerateLimit(165);
-    window.setVerticalSyncEnabled(true);
+    window.setVerticalSyncEnabled(false);
     window.setKeyRepeatEnabled(false);
 
     window.setSize(sf::Vector2u{ 1920, 1080 });
@@ -100,7 +101,7 @@ int main()
 #pragma endregion backgroundInit
 
     //window.resetGLStates();
-	
+    auto Playergui = std::make_unique<class PlayerGui>();
     sf::Clock deltaClock;
     while (window.isOpen()) {
         sf::Event event;
@@ -117,6 +118,22 @@ int main()
         if (ImGui::Button("Spawn Enemy")) 
         {
             gm->CreateEntity<Enemy>(sf::Vector2f{ 300, 5 });
+        }
+        if (ImGui::Button("Reduce Healthbar"))
+        {
+            Playergui->ChangeStaminaBar(-5);
+        }
+        int posX;
+        int PosY;
+        if (ImGui::SliderInt("hpbarx", &posX, 0, 1000))
+        {
+            auto r = Playergui->hp_back_;
+            Playergui->hp_back_.setPosition(posX, r.getSize().y);
+        }
+        if (ImGui::SliderInt("hpbary", &PosY, 0, 1000))
+        {
+            auto r = Playergui->hp_back_;
+            Playergui->hp_back_.setPosition(r.getSize().x , PosY);
         }
         float bgspeed01;
         if (ImGui::SliderFloat("Background01", &bgspeed01, 0, 1000.f))
@@ -150,13 +167,16 @@ int main()
         }
         if (ImGui::Button("Spawn Bullet"))
         {
-            std::cout << window.getDefaultView().getSize().x;
             auto bullet = gm->CreateEntity<AcceleratedBullet>(sf::Vector2f{ 360, 100});
         }
         if (ImGui::Button("Spawn BouncyBullet"))
         {
             std::cout << window.getDefaultView().getSize().x;
-            gm->CreateEntity<BouncyBullet>(sf::Vector2f{ 360, 100 });
+            gm->CreateEntity<BouncyBullet>(sf::Vector2f{ 360, 100 }, 100.f, 2.5f);
+        }
+        if (ImGui::Button("Toggle Hitboxes"))
+        {
+            gm->ShowCollisionBoxes = !gm->ShowCollisionBoxes;
         }
 #pragma endregion ImGuiDebugging
         input_manager->CheckInput();
@@ -165,7 +185,7 @@ int main()
         gm->Update();
         window.clear();
         gm->Draw(window);
-
+        Playergui->ShowGameplayGui(window);
         ImGui::SFML::Render(window);
         window.display();
         gm->RefreshDeltatime();

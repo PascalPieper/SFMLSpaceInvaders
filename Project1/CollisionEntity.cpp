@@ -6,7 +6,7 @@ CollisionEntity::CollisionEntity(sf::Vector2f SpawnPosition) : MoveEntity(SpawnP
 
 void CollisionEntity::RegisterEntity()
 {
-	pGameManager->RegisterToIndex(CollisionIndex, pGameManager->getEntity(this->GetID()));
+	pGameManager->RegisterToIndex(CollisionIndex, this->GetID(), pGameManager->getEntity(this->GetID()));
 	std::cout << "registered:" << pGameManager->getEntity(this->GetID());
 }
 
@@ -28,20 +28,18 @@ void CollisionEntity::VerifyContinousCollisions()
 bool CollisionEntity::CheckCollision(unsigned int CollisionLayer)
 {
 	auto &Clist = pGameManager->CollisionListings[CollisionLayer];
-	//VerifyContinousCollisions();
-
-	for (unsigned int i = 0; i < Clist.size(); i++)
+	
+	auto size = Clist.size();
+	for (auto it = Clist.begin(); it != Clist.end(); ++it)
 	{
-		//std::cout << collision_box_.getGlobalBounds().height;
-		if (this->collision_box_.getGlobalBounds().intersects(Clist.at(i)->collision_box_.getGlobalBounds()))
+		if (Clist.size() != size)
+		{
+			break;
+		}
+		if (this->collision_box_.getGlobalBounds().intersects(it->second->collision_box_.getGlobalBounds()))
 		{
 			return true;
 		}
-	/*		if (std::find(Clist.begin(), Clist.end(), Clist.at(i)) == Clist.end())
-			{
-				LastCollidedEntities.push_back((pGameManager->CollisionListings[CollisionLayer].at(i)));
-				
-			}*/
 		}
 
 	return false;

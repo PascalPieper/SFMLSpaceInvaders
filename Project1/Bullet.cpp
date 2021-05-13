@@ -23,3 +23,12 @@ void Bullet::Update()
 {
 		FlyRight();
 }
+
+void Bullet::OutOfBoundsCheck()
+{
+	if (this->EntitySprite.getPosition().x < -10)
+	{
+		Destroy();
+		return;
+	}
+}

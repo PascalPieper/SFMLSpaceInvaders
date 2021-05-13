@@ -13,4 +13,5 @@ void MoveEntity::MoveToTarget(Entity target)
 void MoveEntity::Move(float x, float y)
 {
 	this->EntitySprite.move(x, y);
+	this->collision_box_.setPosition(EntitySprite.getPosition());
 }

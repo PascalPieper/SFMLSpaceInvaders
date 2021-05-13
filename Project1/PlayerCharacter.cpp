@@ -12,6 +12,8 @@ PlayerCharacter::PlayerCharacter(sf::Vector2f spawn_position) : HealthEntity(spa
 	CollisionIndex = 0;
 	collision_box_offset_ = sf::Vector2f{ 0, 15.f };
 	collision_box_.setSize(sf::Vector2f{ 41.0f,20.0f });
+	texture_animation_offset = sf::IntRect(0, 0, 41, 52);
+	animation_sheet_width_ = 41;
 }
 
 void PlayerCharacter::MoveUp()
@@ -19,7 +21,7 @@ void PlayerCharacter::MoveUp()
 	if (this->EntitySprite.getPosition().y > 0)
 	{
 		
-		Move(0.f, -1.0f);
+		Move(0.f, -250.f * pGameManager->GetDeltaTime());
 	}
 	
 }
@@ -29,7 +31,7 @@ void PlayerCharacter::MoveDown()
 	std::cout << this->EntitySprite.getPosition().y;
 	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ - this->EntitySprite.getTextureRect().height)
 	{
-		Move(0.f, 1.0f);
+		Move(0.f, 250.f * pGameManager->GetDeltaTime());
 	}
 	
 }

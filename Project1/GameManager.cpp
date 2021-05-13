@@ -17,25 +17,25 @@ void GameManager::SortByDrawIndex()
 
 }
 
-void GameManager::RegisterToIndex(unsigned int index, std::shared_ptr<Entity> entity)
+void GameManager::RegisterToIndex(unsigned int index, unsigned int id, std::shared_ptr<Entity> entity)
 {
-	CollisionListings[index].push_back(entity);
+	CollisionListings[index].insert({id, entity});
 }
 
 void GameManager::UnRegisterFromIndex(unsigned index, unsigned int id)
 {
-	auto result = Entities.find(id)->second;
-	CollisionListings[index].erase(std::remove(CollisionListings[index].begin(), CollisionListings[index].end(), result), CollisionListings[index].end());
+	auto result = CollisionListings[index].find(id);
+	CollisionListings[index].erase(result);
+	//CollisionListings[index].erase(std::remove(CollisionListings[index].begin(), CollisionListings[index].end(), result), CollisionListings[index].end());
 	//CollisionListings[index].erase(std::remove_if(CollisionListings[index].begin(), CollisionListings[index].end(), [](std::shared_ptr<Entity>) {return nullptr; }), CollisionListings[index].end());
 	
 }
 
 void GameManager::RemoveEntity(unsigned ID)
 {
-	Entities.erase(entity_ids_in_scene_[ID]);
-	entity_ids_in_scene_.erase(std::remove(entity_ids_in_scene_.begin(), entity_ids_in_scene_.end(), ID), entity_ids_in_scene_.end());
-	
-
+	//std::remove(Entities.begin(), Entities.end(), ID), Entities.end()
+	auto iterator = Entities.find(ID);
+	Entities.erase(iterator);
 }
 
 std::shared_ptr<Entity> GameManager::getEntity(unsigned int id)
@@ -78,26 +78,21 @@ std::shared_ptr<Entity> GameManager::CreateBullet(sf::Vector2f SpawnPosition)
 //Updates all Entities enlisted in the entities vector
 void GameManager::Update()
 {
-	for (int i = 0; i < entity_ids_in_scene_.size(); i++)
+	
+	auto size = Entities.size();
+	for (auto it = Entities.begin(); it != Entities.end(); ++it)
 	{
-		for (auto it = Entities.cbegin(), next_it = it; it != Entities.cend(); it = next_it)
-		{
-			++next_it;
-			if (it->second == nullptr)
-			{
-				Entities.erase(it);
-			}
-		}
-		auto ptr = Entities[entity_ids_in_scene_[i]];
-		if (ptr != nullptr)
-		{
-		if (ptr->GetUpdateActiveState())
-		{
-			ptr->collision_box_.setPosition(Entities[i]->GetEntitySprite().getPosition() + Entities[i]->collision_box_offset_);
-			ptr->Update();
-			
-		}
 
+		if (it->second != nullptr)
+		{
+			auto result = it->second;
+			it->second->Update();
+			result->collision_box_.setPosition(result->GetEntitySprite().getPosition() + result->collision_box_offset_);
+		}
+		if (Entities.size() != size)
+		{
+			Update();
+			break;
 		}
 	}
 }
@@ -106,13 +101,22 @@ void GameManager::Update()
 //NOT FULLY IMPLEMENTED
 void GameManager::Draw(sf::RenderWindow &window)
 {
-	for (int i = 0; i < Entities.size(); i++)
+	for (auto it = Entities.begin(); it != Entities.end(); ++it)
 	{
-		if (Entities[i]->GetRenderActiveState())
+		window.draw(it->second->GetEntitySprite());
+		if (ShowCollisionBoxes)
 		{
-			window.draw(Entities[i]->GetEntitySprite());
-			window.draw(Entities[i]->collision_box_);
+			window.draw(it->second->collision_box_);
 		}
-		
 	}
+	
+	//for (int i = 0; i < Entities.size(); i++)
+	//{
+	//	if (Entities[i]->GetRenderActiveState())
+	//	{
+	//		window.draw(Entities[i]->GetEntitySprite());
+	//		window.draw(Entities[i]->collision_box_);
+	//	}
+	//	
+	//}
 }

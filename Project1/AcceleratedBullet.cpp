@@ -29,8 +29,11 @@ void AcceleratedBullet::Update()
 	//ImGui::SliderFloat("AccelerationIncrease", &_AccelerationIncrease, 0, 20);
 
 	FlyRight();
+	//Destroy();
 	if (CheckCollision(0))
 	{
 		Destroy();
+		return;
 	}
+	OutOfBoundsCheck();
 }
