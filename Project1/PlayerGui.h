@@ -23,16 +23,16 @@ public:
 	sf::Sprite bar_sprite_;
 	sf::RectangleShape stamina_back_;
 	sf::Text score_;
-	sf::Text paused_;
+	sf::Text score_text_;
+	sf::Text paused_text_;
 	sf::Font font_;
 
 	sf::RectangleShape game_over_screen_ {sf::Vector2f{360, 203}};
-	sf::Texture GameOverTexture;
+	sf::Texture game_over_texture_;
 	
 	void ShowGameOverScreen(int score);
 	void EnableGameOverScreen();
 	void SetScreenActive(void (PlayerGui::*function)(sf::RenderWindow &window));
-	//int operation(int x, int y, int (*function)(int, int)) { return function(x, y); }
 	void GamePlayScreen(sf::RenderWindow& window);
 	void GameOverScreen(sf::RenderWindow& window);
 	void GamePausedScreen(sf::RenderWindow& window);

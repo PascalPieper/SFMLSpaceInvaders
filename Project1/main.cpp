@@ -84,11 +84,13 @@ int main()
 
 	
     sf::RenderWindow window(sf::VideoMode(360, 203), "Morus Kara", sf::Style::Default);
+    sf::View view1(sf::FloatRect(0.f, 0.f, 360.f, 203.f));
+    window.setView(view1);
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(false);
     window.setKeyRepeatEnabled(false);
 
-    window.setSize(sf::Vector2u{ 1920, 1080 });
+    //window.setSize(sf::Vector2u{ 1920, 1080 });
 #pragma endregion GameManagerSetup
     
 #pragma region backgroundInit
@@ -134,7 +136,22 @@ int main()
         }
         ImGui::SFML::Update(window, deltaClock.restart());
 #pragma region ImGuiDebugging
-        ImGui::Begin("Sample window"); // begin window
+    	
+        ImGui::Begin("Debugging");
+        if (ImGui::Button("Spawn Enemy"))
+        {
+            gm->CreateEntity<Enemy>(sf::Vector2f{ 300, -100 });
+        }
+        if (ImGui::Button("Spawn Snake Enemy"))
+        {
+            gm->CreateEntity<SnakeEnemy>(sf::Vector2f{ 300, -100 });
+        }
+
+        if (ImGui::Button("Spawn Big Fish Enemy"))
+        {
+            gm->CreateEntity<BigFishEnemy>(sf::Vector2f{ 300, -150 });
+        }// begin window
+        /*
         if (ImGui::Button("Pause Game"))
         {
             gm->SetAllEntitiesActiveState(false);
@@ -143,19 +160,7 @@ int main()
         {
             gm->SetAllEntitiesActiveState(true);
         }
-        if (ImGui::Button("Spawn Enemy")) 
-        {
-            gm->CreateEntity<Enemy>(sf::Vector2f{ 300, -100 });
-        }
-        if (ImGui::Button("Spawn Snake Enemy"))
-        {
-            gm->CreateEntity<SnakeEnemy>(sf::Vector2f{ 300, -100 });
-        }
-    	
-        if (ImGui::Button("Spawn Big Fish Enemy"))
-        {
-            gm->CreateEntity<BigFishEnemy>(sf::Vector2f{ 300, -150 });
-        }
+
 
         if (ImGui::Button("Reduce Healthbar"))
         {
@@ -230,6 +235,7 @@ int main()
             gm->CreateEntity<BarrageBullet>(sf::Vector2f{ 360, 100 }, 60, 0, 0.60f);
 
         }
+    	*/
         if (ImGui::Button("Toggle Hitboxes"))
         {
             gm->ShowCollisionBoxes = !gm->ShowCollisionBoxes;
@@ -239,6 +245,7 @@ int main()
 
         ImGui::End();
         gm->Update();
+        //level_manager->UpdateState();
         window.clear();
         gm->Draw(window);
         Playergui->ShowGui(window);

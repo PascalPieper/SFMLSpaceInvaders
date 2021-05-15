@@ -166,6 +166,7 @@
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="PlayerGui.cpp" />
+    <ClCompile Include="Random_Utility.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Random_Utility.h" />
     <ClInclude Include="SpriteEffects.h" />
     <ClInclude Include="EntityEnums.h" />
     <ClInclude Include="GameManager.h" />

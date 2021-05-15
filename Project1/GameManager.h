@@ -17,7 +17,6 @@
 
 class Entity;
 class LevelManager;
-//class CollisionEntity;
 class GameManager
 {
 public:

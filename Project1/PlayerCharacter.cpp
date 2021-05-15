@@ -11,7 +11,7 @@ PlayerCharacter::PlayerCharacter(sf::Vector2f spawn_position) : HealthEntity(spa
 	_AccelerationIncrease = 0.05f;
 	CollisionIndex = 0;
 	collision_box_offset_ = sf::Vector2f{ 0, 15.f };
-	collision_box_.setSize(sf::Vector2f{ 41.0f,20.0f });
+	collision_box_.setSize(sf::Vector2f{ 37.0f,20.0f });
 	texture_animation_offset = sf::IntRect(0, 0, 41, 52);
 	animation_sheet_width_ = 41;
 	bullet_spawn_offset_= { 35.f, 30.f };
@@ -22,21 +22,17 @@ void PlayerCharacter::MoveUp()
 {
 	if (this->EntitySprite.getPosition().y > 0)
 	{
-		
 		Move((0.f), -250.f * pGameManager->GetDeltaTime());
 	}
-	
 }
 
 void PlayerCharacter::MoveDown()
 {
-	
 	//std::cout << this->EntitySprite.getPosition().y;
 	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ - this->EntitySprite.getTextureRect().height)
 	{
 		Move(0.f, 250.f * pGameManager->GetDeltaTime());
 	}
-	
 }
 
 void PlayerCharacter::Start()
@@ -48,21 +44,6 @@ void PlayerCharacter::Start()
 void PlayerCharacter::OnDeath()
 {
 	pGameManager->pPlayerGui->SetScreenActive(&PlayerGui::GameOverScreen);
-}
-
-void PlayerCharacter::Block()
-{
-
-
-}
-
-
-void PlayerCharacter::Dash()
-{
-}
-
-void PlayerCharacter::Jump()
-{
 }
 
 void PlayerCharacter::ChargeAttack()
@@ -149,6 +130,27 @@ sf::Vector2f PlayerCharacter::GetPositon()
 		return this->EntitySprite.getPosition();
 }
 
+void PlayerCharacter::AddToPlayerScore(const int add_value)
+{
+	player_score_ += add_value;
+	std::ostringstream ss_score;
+	ss_score << "Score: " << player_score_;
+	pGameManager->pPlayerGui->score_text_.setString(ss_score.str());
+}
+
+
+void PlayerCharacter::Block()
+{
+}
+
+void PlayerCharacter::Dash()
+{
+}
+
+void PlayerCharacter::Jump()
+{
+}
+
 void PlayerCharacter::MoveLeft()
 {
 }
@@ -156,13 +158,4 @@ void PlayerCharacter::MoveLeft()
 void PlayerCharacter::MoveRight()
 {
 }
-
-void PlayerCharacter::AddToPlayerScore(const int add_value)
-{
-	player_score_ += add_value;
-	std::ostringstream ssScore;
-	ssScore << "Score: " << player_score_;
-	pGameManager->pPlayerGui->paused_.setString(ssScore.str());
-}
-
 

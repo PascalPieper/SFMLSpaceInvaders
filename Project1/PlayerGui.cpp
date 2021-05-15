@@ -16,16 +16,16 @@ PlayerGui::PlayerGui()
 	
 	bar_sprite_.setPosition(5, 8);
 
-	GameOverTexture.loadFromFile("Assets/gui/GAME_OVER.png");
-	game_over_screen_.setTexture(&GameOverTexture);
+	game_over_texture_.loadFromFile("Assets/gui/GAME_OVER.png");
+	game_over_screen_.setTexture(&game_over_texture_);
 
 	font_.loadFromFile("Assets/Fonts/5P5.ttf");
 
-	paused_.setFont(font_);
-	paused_.setFillColor(sf::Color::White);
-	paused_.setCharacterSize(10);
-	paused_.setPosition({ sf::Vector2f(160,-3) });
-	paused_.setString("Score: 0");
+	score_text_.setFont(font_);
+	score_text_.setFillColor(sf::Color::White);
+	score_text_.setCharacterSize(10);
+	score_text_.setPosition({ sf::Vector2f(160,-3) });
+	score_text_.setString("Score: 0");
 
 	
 	SetScreenActive(&PlayerGui::GamePlayScreen);
@@ -55,7 +55,7 @@ void PlayerGui::GamePlayScreen(sf::RenderWindow& window)
 	
 	//paused_.setFont(p_asset_manager_->LoadFont("ArcadeClassic", "Assets/Fonts/ARCADECLASSIC.TTF"));
 
-	window.draw(paused_);
+	window.draw(score_text_);
 }
 
 void PlayerGui::GameOverScreen(sf::RenderWindow& window)

@@ -1,5 +1,4 @@
 #include "GameManager.h"
-class Entity;
 GameManager::GameManager() 
 	: _deltaTime(0)
 {

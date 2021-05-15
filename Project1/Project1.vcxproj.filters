@@ -54,6 +54,9 @@
     <Filter Include="Header Files\EntityEffects">
       <UniqueIdentifier>{a7bf6f2e-abbb-4557-bdc1-c14733302d50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{bf9748d5-bd1f-455b-86e7-18f8b5ec8428}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationInformation.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>Header Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Random_Utility.cpp">
+      <Filter>Header Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +300,9 @@
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Header Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Random_Utility.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

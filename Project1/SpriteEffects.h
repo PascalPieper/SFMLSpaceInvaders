@@ -3,8 +3,7 @@
 
 class SpriteEffects
 {
-
-
+	
 protected:
 	sf::Color original_color_;
 	sf::Color target_color_;
@@ -27,24 +26,18 @@ public:
 		this->delay_second_time = delay_second_time;
 	}
 
-
 protected:
 	sf::Clock effect_timer_;
 
 public:
 	void FlashSprite()
 	{
-		//this->p_sprite = &sprite;
-		//delay_second_time = delay_second;
-		//originalColor = sprite.getColor();
-		//
-		
 		p_sprite->setColor(sf::Color::Red);
 		effect_timer_.restart();
 	}
 	
-void UpdateEffects()
-	{
+void UpdateEffects() const
+{
 		if (effect_timer_.getElapsedTime().asSeconds() > delay_second_time)
 		{
 			p_sprite->setColor(original_color_);
