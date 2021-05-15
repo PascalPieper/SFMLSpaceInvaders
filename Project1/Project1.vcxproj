@@ -140,6 +140,8 @@
     <ClCompile Include="ApplicationInformation.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BarrageBullet.cpp" />
+    <ClCompile Include="BigFishEnemy.cpp" />
     <ClCompile Include="BouncyBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CollisionEntity.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="Level01.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveEntity.cpp" />
+    <ClCompile Include="PlayerBlock.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="PlayerGui.cpp" />
@@ -167,17 +170,21 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScreenFade.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
+    <ClCompile Include="SnakeEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AcceleratedBullet.h" />
     <ClInclude Include="ApplicationInformation.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BarrageBullet.h" />
+    <ClInclude Include="BigFishEnemy.h" />
     <ClInclude Include="BouncyBullet.h" />
     <ClInclude Include="CollisionEntity.h" />
     <ClInclude Include="CompHeader.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="SpriteEffects.h" />
     <ClInclude Include="EntityEnums.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="FilePath.h" />
@@ -195,15 +202,18 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Level01.h" />
     <ClInclude Include="MoveEntity.h" />
+    <ClInclude Include="PlayerBlock.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="PlayerGui.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SaveGameManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Overlay.h" />
     <ClInclude Include="ScreenFade.h" />
     <ClInclude Include="ScrollingBackground.h" />
+    <ClInclude Include="SnakeEnemy.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -8,8 +8,9 @@ public:
 	
 	void PlayMusic (const std::string& filepath);
 	void PlaySound(std::string filepath);
+	sf::Sound attack_sfx;
 	
-	sf::SoundBuffer buffer_;
+	sf::SoundBuffer soundInit;
 	sf::Music music_;
 
 private:

@@ -85,9 +85,12 @@ void GameManager::Update()
 
 		if (it->second != nullptr)
 		{
-			auto result = it->second;
-			it->second->Update();
-			result->collision_box_.setPosition(result->GetEntitySprite().getPosition() + result->collision_box_offset_);
+			if (it->second->GetUpdateActiveState())
+			{
+				auto result = it->second;
+				it->second->Update();
+				result->collision_box_.setPosition(result->GetEntitySprite().getPosition() + result->collision_box_offset_);
+			}
 		}
 		if (Entities.size() != size)
 		{
@@ -103,20 +106,39 @@ void GameManager::Draw(sf::RenderWindow &window)
 {
 	for (auto it = Entities.begin(); it != Entities.end(); ++it)
 	{
-		window.draw(it->second->GetEntitySprite());
-		if (ShowCollisionBoxes)
+		if (it->second->GetDrawActiveState())
 		{
-			window.draw(it->second->collision_box_);
+			window.draw(it->second->GetEntitySprite());
+			if (ShowCollisionBoxes)
+			{
+				window.draw(it->second->collision_box_);
+			}
 		}
+
 	}
 	
 	//for (int i = 0; i < Entities.size(); i++)
 	//{
-	//	if (Entities[i]->GetRenderActiveState())
+	//	if (Entities[i]->GetDrawActiveState())
 	//	{
 	//		window.draw(Entities[i]->GetEntitySprite());
 	//		window.draw(Entities[i]->collision_box_);
 	//	}
 	//	
 	//}
+}
+
+void GameManager::SetAllEntitiesActiveState(bool active)
+{
+		SetPaused(!active);
+	
+		for (auto it = Entities.begin(); it != Entities.end(); ++it)
+		{
+
+			if (it->second != nullptr)
+			{
+				it->second->SetUpdateActiveState(active);
+			}
+		}
+
 }

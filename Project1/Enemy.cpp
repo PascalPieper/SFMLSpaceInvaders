@@ -8,13 +8,26 @@ Enemy::Enemy(sf::Vector2f SpawnPosition) : HealthEntity(SpawnPosition)
 	_MovementSpeed = 35;
 	_AccelerationSpeed = 0.1f;
 	_AccelerationIncrease = 0.05f;
-	CollisionIndex = 0;
-	collision_box_.setSize(sf::Vector2f{ 4.f,4.f });
+	CollisionIndex = 2;
+	collision_box_.setSize(sf::Vector2f{ 47.f,61.f });
 	_MoveCoolDown = 5.f;
 	_shootClock.restart();
 	func = &Enemy::ShootAccelerated;
 	texture_animation_offset = sf::IntRect( 0,0,47, 61 );
 	animation_sheet_width_ = 564;
+	SetHealth(1000);
+	_isOnScreen = false;
+}
+
+void Enemy::OnDeath()
+{
+	Destroy();
+}
+
+void Enemy::Start()
+{
+	se_.SetTargetSprite(&EntitySprite);
+	se_.SetDelaySecondTime(0.023f);
 }
 
 void Enemy::MoveIntoScreen()
@@ -44,14 +57,16 @@ void Enemy::MoveUpDown()
 
 void Enemy::ShootAccelerated()
 {
+	pGameManager->CreateEntity<AcceleratedBullet>(this->EntitySprite.getPosition() + bullet_spawn_offset_, 5.f, 0.f);
 	func = &Enemy::ShootBouncing;
-	pGameManager->CreateEntity<AcceleratedBullet>(this->EntitySprite.getPosition() + bullet_spawn_offset_);
-
 }
 
 void Enemy::ShootBouncing()
 {
-	pGameManager->CreateEntity<BouncyBullet>(this->EntitySprite.getPosition() + bullet_spawn_offset_, 75.f, 2.5f);
+	pGameManager->CreateEntity<AcceleratedBullet>(this->EntitySprite.getPosition() + bullet_spawn_offset_, 7.f, 25.f);
+	pGameManager->CreateEntity<AcceleratedBullet>(this->EntitySprite.getPosition() + bullet_spawn_offset_, 7.f, 85.f);
+	pGameManager->CreateEntity<AcceleratedBullet>(this->EntitySprite.getPosition() + bullet_spawn_offset_, 5.f, -55.f);
+	
 	func = &Enemy::ShootAccelerated;
 }
 void Enemy::Shoot()
@@ -65,19 +80,46 @@ void Enemy::Update()
 {
 	ProgressAnimation();
 	ImGui::Begin("Enemy01");
-	ImGui::SliderFloat("Speed", &_MovementSpeed, 0, 300.f);
-	ImGui::SliderFloat("Movement", &_MoveCoolDown, 0, 300.f);
-	ImGui::Text("Time Elapsed = %f", _moveClock.getElapsedTime().asSeconds());
-	ImGui::SliderFloat("offset X", &bullet_spawn_offset_.x, -50, 50);
-	ImGui::SliderFloat("offset Y", &bullet_spawn_offset_.y, -50, 50);
-	MoveUpDown();
-	
-	if (_shootClock.getElapsedTime().asSeconds() > _AttackCoolDown) {
-		Shoot();
-		_shootClock.restart();
+	if (ImGui::Button("Destroy"))
+	{
+		Destroy();
 	}
+
+	if (_isOnScreen)
+	{
+		if (CheckCollision(4))
+		{
+			se_.FlashSprite();
+			TakeDamage(5);
+		}
+		se_.UpdateEffects();
+		MoveUpDown();
+
+		if (_shootClock.getElapsedTime().asSeconds() > _AttackCoolDown) {
+			Shoot();
+			_shootClock.restart();
+		}
+	}
+	else
+	{
+		MoveToScreenTop();
+	}
+
 	
 
 
 	ImGui::End();
+}
+
+void Enemy::MoveToScreenTop()
+{
+	
+	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ / 5)
+	{
+		this->EntitySprite.move(0, _MovementSpeed * pGameManager->GetDeltaTime());
+	}
+	else
+	{
+		_isOnScreen = true;
+	}
 }

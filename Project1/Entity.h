@@ -28,10 +28,13 @@ public:
 	//GameManager Reference Pointer that is used to access all other
 	//Engine specific Manager classes
 	GameManager* pGameManager;
-
+	bool is_animated_ = true;
 protected:
 	bool _isRendered = true;
 	bool _isActive = true;
+
+
+protected:
 	sf::Clock sprite_animation_clock_;
 	int sprite_animation_speed_ = 60;
 	int animation_sheet_width_ = 0;
@@ -70,9 +73,9 @@ public:
 	unsigned int GetID() const { return UniqueEntityID; }
 	void SetUpdateActiveState(bool state) { _isActive = state; }
 	void SetRenderActiveState(bool state) { _isRendered = state; }
-	void SetActiveAndRendered(bool state) {	_isActive = state; _isRendered = state;}
+	void SetActiveAndDrawn(bool state) {	_isActive = state; _isRendered = state;}
 	bool GetUpdateActiveState() const { return _isActive; }
-	bool GetRenderActiveState() const { return _isRendered; }
+	bool GetDrawActiveState() const { return _isRendered; }
 	void SetDrawLayer(unsigned int layer) {_DrawLayer = layer;}
 	unsigned int GetDrawLayer() const {};
 
@@ -86,7 +89,13 @@ public:
 
 	virtual void ProgressAnimation();
 	virtual void Destroy();
-	
+	virtual void Start() {};
 	virtual void Update();
+
+public:
+	bool IsAnimated() const
+	{
+		return is_animated_;
+	}
 
 };

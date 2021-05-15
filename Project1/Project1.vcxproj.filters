@@ -51,6 +51,9 @@
     <Filter Include="Source Files\main">
       <UniqueIdentifier>{6b3a7577-d869-479f-83a9-47ad49cf7086}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EntityEffects">
+      <UniqueIdentifier>{a7bf6f2e-abbb-4557-bdc1-c14733302d50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationInformation.cpp">
@@ -60,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FilePath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerCharacter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
@@ -122,12 +122,6 @@
     <ClCompile Include="AcceleratedBullet.cpp">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Header Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Level01.cpp">
-      <Filter>Header Files\Scenes\Levels</Filter>
-    </ClCompile>
     <ClCompile Include="BouncyBullet.cpp">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClCompile>
@@ -140,11 +134,32 @@
     <ClCompile Include="ScrollingBackground.cpp">
       <Filter>Header Files\Background</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBullet.cpp">
+    <ClCompile Include="SnakeEnemy.cpp">
+      <Filter>Header Files\Entity Templates\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="BigFishEnemy.cpp">
+      <Filter>Header Files\Entity Templates\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerGui.cpp">
+    <ClCompile Include="Level01.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="BarrageBullet.cpp">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBlock.cpp">
+      <Filter>Header Files\Entity Templates\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCharacter.cpp">
+      <Filter>Header Files\Entity Templates\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGui.cpp">
+      <Filter>Header Files\ScreenEffects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,9 +226,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="EntityEnums.h">
       <Filter>Header Files\Compilation Header</Filter>
     </ClInclude>
@@ -241,9 +253,6 @@
     <ClInclude Include="PlayerCharacter.h">
       <Filter>Header Files\Entity Templates\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Level01.h">
-      <Filter>Header Files\Scenes\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="BouncyBullet.h">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClInclude>
@@ -255,6 +264,30 @@
     </ClInclude>
     <ClInclude Include="PlayerGui.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Header Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeEnemy.h">
+      <Filter>Header Files\Entity Templates\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BigFishEnemy.h">
+      <Filter>Header Files\Entity Templates\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level01.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteEffects.h">
+      <Filter>Header Files\EntityEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrageBullet.h">
+      <Filter>Header Files\Entity Templates\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
 Bullet::Bullet(sf::Vector2f SpawnPosition) : CollisionEntity(SpawnPosition)
 {
 	tag = Tag::BULLET;
-	TEXTURE_PATH = "Assets/Sprites/Bullet.png";
-	TextureName = "BaseBullet";
+	TEXTURE_PATH = "Assets/Sprites/BarrageBullet.png";
+	TextureName = "BarrageBullet";
 	//_DrawLayer = 5;
 	_MovementSpeed = 5;
 	_AccelerationSpeed = 0.1f;
@@ -22,11 +22,12 @@ void Bullet::FlyRight()
 void Bullet::Update()
 {
 		FlyRight();
+		OutOfBoundsCheck();
 }
 
 void Bullet::OutOfBoundsCheck()
 {
-	if (this->EntitySprite.getPosition().x < -10)
+	if (this->EntitySprite.getPosition().x < -10 || this->EntitySprite.getPosition().x > 370)
 	{
 		Destroy();
 		return;

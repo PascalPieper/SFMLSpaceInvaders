@@ -13,20 +13,23 @@ protected:
 	sf::Clock _shootClock;
 	sf::Clock _moveClock;
 	bool _AttackOnCD = true;
-	float _AttackCoolDown = 2.f;
+	float _AttackCoolDown = 1.f;
 	float _MoveCoolDown = 10.f;
 	bool _movedirection = false;
 	bool _isOnScreen;
-	
+	SpriteEffects se_;
+	void OnDeath() override;
 	typedef void (Enemy::* fptr)();
 	fptr func;
 	
 public:
+	void Start() override;
 	void MoveIntoScreen();
 	void MoveUpDown();
 	void Shoot();
 	void ShootAccelerated();
 	void ShootBouncing();
 	void Update();
+	void MoveToScreenTop();
 
 };

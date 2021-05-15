@@ -9,7 +9,7 @@ ScrollingBackground::ScrollingBackground(const sf::Vector2f spawn_position, cons
 	TEXTURE_PATH = filepath;
 	tag = Tag::BACKGROUND;
 	TextureName = texture_name;
-	
+	is_animated_ = false;
 	//_DrawLayer = 0;
 	_MovementSpeed = speed;
 }

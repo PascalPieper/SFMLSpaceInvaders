@@ -8,4 +8,14 @@ public:
 	void Update() override;
 protected:
 	bool _direction;
+public:
+	bool IsDirection() const
+	{
+		return _direction;
+	}
+
+	void SetDirection(bool direction)
+	{
+		_direction = direction;
+	}
 };

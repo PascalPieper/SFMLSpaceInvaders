@@ -13,19 +13,20 @@ Entity::~Entity()
 
 void Entity::ProgressAnimation()
 {
-	if (sprite_animation_clock_.getElapsedTime().asMilliseconds() > sprite_animation_speed_)
+	if (sprite_animation_clock_.getElapsedTime().asMilliseconds() >= sprite_animation_speed_)
 	{
-		auto& test = texture_animation_offset;
+		auto& result = texture_animation_offset;
 
-		if (test.left >= animation_sheet_width_ - texture_animation_offset.width)
+		if (result.left >= animation_sheet_width_ - texture_animation_offset.width)
 		{
-			test.left = 0;
-			EntitySprite.setTextureRect(test);
+			result.left = 0;
+			EntitySprite.setTextureRect(result);
+			sprite_animation_clock_.restart();
 		}
 		else
 		{
-			test.left += texture_animation_offset.width;
-			EntitySprite.setTextureRect(test);
+			result.left += texture_animation_offset.width;
+			EntitySprite.setTextureRect(result);
 			sprite_animation_clock_.restart();
 		}
 

@@ -42,13 +42,19 @@ sf::Font& AssetManager::LoadFont(std::string name, std::string filePath)
 	{
 		return (KeyValuePair->second);
 	}
-	else
+	
+	auto& font = _fonts[name];
+	if (font.loadFromFile(filePath))
 	{
-		auto& texture = _fonts[name];
-
-		if (texture.loadFromFile(filePath))
-		{
-			return texture;
-		}
+		return font;
 	}
+}
+
+bool AssetManager::UnloadFont(std::string name)
+{
+	if (_fonts.erase(name))
+	{
+		return true;
+	}
+	return false;
 }

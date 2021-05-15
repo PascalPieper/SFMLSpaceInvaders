@@ -40,7 +40,6 @@ int main()
     return 0;
 }
 */
-
 #include "imgui.h"
 #include "imgui-SFML.h"
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -56,6 +55,10 @@ int main()
 #include "AudioManager.h"
 #include "InputManager.h"
 #include "PlayerGui.h"
+#include "PlayerManager.h"
+#include "SnakeEnemy.h"
+#include "BigFishEnemy.h"
+#include "BarrageBullet.h"
 
 int main()
 {
@@ -65,19 +68,28 @@ int main()
     auto asset_manager = std::make_shared<AssetManager>();
     auto audio_manager = std::make_shared<AudioManager>();
     auto input_manager = std::make_shared<InputManager>();
-	
+ 
+    auto Playergui = std::make_shared<PlayerGui>();
+    
     gm->pSaveGameManager = save_game_manager;
     gm->pAssetManager = asset_manager;
     gm->pAudioManager = audio_manager;
+    gm->pPlayerGui = Playergui;
+	
+    input_manager->p_game_manager = gm;
+    Playergui->p_asset_manager_ = asset_manager;
+	
+    //gm->CurrentPlayerCharacterID = Player->GetID();
 
-    sf::RenderWindow window(sf::VideoMode(360, 203), "Morus Kara");
-    window.setFramerateLimit(165);
+	
+    sf::RenderWindow window(sf::VideoMode(360, 203), "Morus Kara", sf::Style::Default);
+    window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(false);
     window.setKeyRepeatEnabled(false);
 
     window.setSize(sf::Vector2u{ 1920, 1080 });
 #pragma endregion GameManagerSetup
-
+    
 #pragma region backgroundInit
     ImGui::SFML::Init(window);
     auto Background01 = 
@@ -96,18 +108,25 @@ int main()
         gm->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/6_Dune_3_duplicated.png", "Background06", 200.f);
 	
     gm->pAudioManager->PlayMusic("Assets/Music/AnikInvaders.wav");
-    auto Player = gm->CreateEntity<PlayerCharacter>(sf::Vector2f{ 20,0 });
-    input_manager->p_player_ = Player;
+
 #pragma endregion backgroundInit
 
     //window.resetGLStates();
-    auto Playergui = std::make_unique<class PlayerGui>();
+    auto Player = gm->CreateEntity<PlayerCharacter>(sf::Vector2f{ 20,0 });
+    gm->current_player_id_ = Player->GetID();
+    auto Playermanager = std::make_shared<PlayerManager>(Player);
+    //gm->current_player_character_ = Player;
+    input_manager->p_player_ = gm->GetEntityByType<PlayerCharacter>(gm->current_player_id_);
     sf::Clock deltaClock;
+
+
+	///imgui vars, delete later
     while (window.isOpen()) {
         sf::Event event;
         
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
+            input_manager->ProcessEventInput(event);
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
@@ -115,10 +134,28 @@ int main()
         ImGui::SFML::Update(window, deltaClock.restart());
 #pragma region ImGuiDebugging
         ImGui::Begin("Sample window"); // begin window
+        if (ImGui::Button("Pause Game"))
+        {
+            gm->SetAllEntitiesActiveState(false);
+        }
+        if (ImGui::Button("Resume Game"))
+        {
+            gm->SetAllEntitiesActiveState(true);
+        }
         if (ImGui::Button("Spawn Enemy")) 
         {
-            gm->CreateEntity<Enemy>(sf::Vector2f{ 300, 5 });
+            gm->CreateEntity<Enemy>(sf::Vector2f{ 300, -100 });
         }
+        if (ImGui::Button("Spawn Snake Enemy"))
+        {
+            gm->CreateEntity<SnakeEnemy>(sf::Vector2f{ 300, 5 });
+        }
+    	
+        if (ImGui::Button("Spawn Big Fish Enemy"))
+        {
+            gm->CreateEntity<BigFishEnemy>(sf::Vector2f{ 300, 5 });
+        }
+
         if (ImGui::Button("Reduce Healthbar"))
         {
             Playergui->ChangeStaminaBar(-5);
@@ -128,12 +165,12 @@ int main()
         if (ImGui::SliderInt("hpbarx", &posX, 0, 1000))
         {
             auto r = Playergui->hp_back_;
-            Playergui->hp_back_.setPosition(posX, r.getSize().y);
+            Playergui->hp_back_.setPosition(static_cast<float>(posX), r.getSize().y);
         }
         if (ImGui::SliderInt("hpbary", &PosY, 0, 1000))
         {
             auto r = Playergui->hp_back_;
-            Playergui->hp_back_.setPosition(r.getSize().x , PosY);
+            Playergui->hp_back_.setPosition(r.getSize().x , static_cast<float>(PosY));
         }
         float bgspeed01;
         if (ImGui::SliderFloat("Background01", &bgspeed01, 0, 1000.f))
@@ -167,12 +204,30 @@ int main()
         }
         if (ImGui::Button("Spawn Bullet"))
         {
-            auto bullet = gm->CreateEntity<AcceleratedBullet>(sf::Vector2f{ 360, 100});
+            auto bullet = gm->CreateEntity<AcceleratedBullet>(sf::Vector2f{ 360, 100}, 5.f, 0);
         }
+
+        float bouncyangle = 0;
+        float bouncyspeed = 0;
+        //if (ImGui::SliderFloat("bulletspawn position player x", &bouncyangle, -500, 1000.f))
+        //{
+        //    Player->SetBulletSpawnOffset(sf::Vector2f{ bouncyangle , 0});
+        //}
+
+        //if (ImGui::SliderFloat("bulletspawn position player y", &bouncyspeed, -500, 1000.f))
+        //{
+        //    Player->SetBulletSpawnOffset(sf::Vector2f{ 0 , bouncyspeed });
+        //}
         if (ImGui::Button("Spawn BouncyBullet"))
         {
-            std::cout << window.getDefaultView().getSize().x;
-            gm->CreateEntity<BouncyBullet>(sf::Vector2f{ 360, 100 }, 100.f, 2.5f);
+            gm->CreateEntity<BouncyBullet>(sf::Vector2f{ 360, 100 }, 1, 0);
+        }
+        if (ImGui::Button("Spawn Barrage"))
+        {
+            gm->CreateEntity<BarrageBullet>(sf::Vector2f{ 360, 100 }, 60, 0, 0.70f);
+            gm->CreateEntity<BarrageBullet>(sf::Vector2f{ 360, 100 }, 60, 0, 0.65f);
+            gm->CreateEntity<BarrageBullet>(sf::Vector2f{ 360, 100 }, 60, 0, 0.60f);
+
         }
         if (ImGui::Button("Toggle Hitboxes"))
         {
@@ -185,7 +240,7 @@ int main()
         gm->Update();
         window.clear();
         gm->Draw(window);
-        Playergui->ShowGameplayGui(window);
+        Playergui->ShowGui(window);
         ImGui::SFML::Render(window);
         window.display();
         gm->RefreshDeltatime();

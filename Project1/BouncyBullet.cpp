@@ -1,15 +1,18 @@
 #include "BouncyBullet.h"
 
+#include "PlayerCharacter.h"
+
 BouncyBullet::BouncyBullet(sf::Vector2f SpawnPosition, float move_speed, float angle_multi) : Bullet(SpawnPosition)
 {
 	tag = Tag::BULLET;
-	TEXTURE_PATH = "Assets/Sprites/Bullet.png";
+	is_animated_ = false;
+	TEXTURE_PATH = "Assets/Sprites/BouncyBullet2.png";
 	TextureName = "BouncyBullet";
 	//_DrawLayer = 5;
 	_MovementSpeed = move_speed;
 	_AccelerationSpeed = 0.0f;
 	_AccelerationIncrease = 0.00f;
-	CollisionIndex = 2;
+	CollisionIndex = 3;
 	collision_box_.setSize(sf::Vector2f{ 4.f,4.f });
 	angle_multi_ = angle_multi;
 }
@@ -47,8 +50,14 @@ void BouncyBullet::Update()
 	ImGui::Text("%s", _direction ? "true" : "false");
 	FlyRight();
 	OutOfBoundsCheck();
-	if(CheckCollision(0))
+	if (CheckCollision(0))
+	{
+		pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->TakeDamage(5);
+		Destroy();
+	}
+	if (CheckCollision(1))
 	{
 		Destroy();
-	};
-}
+	}
+
+	}

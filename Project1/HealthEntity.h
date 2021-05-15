@@ -7,7 +7,7 @@ public:
 protected:
 
 	unsigned int _maximumHealth;
-	unsigned int _health;
+	int _health;
 
 	//Getters
 public:
@@ -23,13 +23,23 @@ public:
 
 	//Functions
 public:
-
-	void TakeDamage(unsigned int Damage)
+	virtual void OnDeath() {}
+	virtual void TakeDamage(int Damage)
 	{
-		Damage > _health ? _health = 0 : _health -= Damage;
+
+		if (Damage > _health)
+		{
+			_health = 0;
+			OnDeath();
+		}
+		else
+		{
+			_health -= Damage;
+		}
+			
 	}
 
-	void Heal(unsigned int HealValue)
+	virtual void Heal(unsigned int HealValue)
 	{
 		HealValue <= _maximumHealth ? _health += HealValue : _health = _maximumHealth;
 	}

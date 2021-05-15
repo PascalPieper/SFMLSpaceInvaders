@@ -1,6 +1,6 @@
 #pragma once
 #include "MoveEntity.h"
-
+#include "SpriteEffects.h"
 
 class CollisionEntity : public MoveEntity 
 {

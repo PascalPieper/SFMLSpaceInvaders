@@ -17,6 +17,6 @@ public:
 	bool UnLoadTexture(std::string name);
 
 	sf::Font& LoadFont(std::string name, std::string filePath);
-		bool UnloadFont(std::string name);
+	bool UnloadFont(std::string name);
 	//void LoadFont(std::string name, std::string fileName);
 };
