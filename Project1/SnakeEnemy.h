@@ -28,6 +28,6 @@ public:
 	void ShootAccelerated();
 	void ShootBouncing();
 	void Update() override;
-
+	void MoveToScreenTop();
 };
 

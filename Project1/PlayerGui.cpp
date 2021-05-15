@@ -18,6 +18,16 @@ PlayerGui::PlayerGui()
 
 	GameOverTexture.loadFromFile("Assets/gui/GAME_OVER.png");
 	game_over_screen_.setTexture(&GameOverTexture);
+
+	font_.loadFromFile("Assets/Fonts/5P5.ttf");
+
+	paused_.setFont(font_);
+	paused_.setFillColor(sf::Color::White);
+	paused_.setCharacterSize(10);
+	paused_.setPosition({ sf::Vector2f(160,-3) });
+	paused_.setString("Score: 0");
+
+	
 	SetScreenActive(&PlayerGui::GamePlayScreen);
 }
 
@@ -42,16 +52,21 @@ void PlayerGui::GamePlayScreen(sf::RenderWindow& window)
 	window.draw(stamina_back_);
 	window.draw(score_);
 	window.draw(bar_sprite_);
+	
+	//paused_.setFont(p_asset_manager_->LoadFont("ArcadeClassic", "Assets/Fonts/ARCADECLASSIC.TTF"));
+
+	window.draw(paused_);
 }
 
 void PlayerGui::GameOverScreen(sf::RenderWindow& window)
 {
+	
 	window.draw(game_over_screen_);
 }
 
 void PlayerGui::GamePausedScreen(sf::RenderWindow& window)
 {
-	window.draw(paused_);
+	window.draw(hp_back_);
 }
 
 void PlayerGui::ShowGui(sf::RenderWindow &window)

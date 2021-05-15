@@ -13,7 +13,7 @@ BouncyBullet::BouncyBullet(sf::Vector2f SpawnPosition, float move_speed, float a
 	_AccelerationSpeed = 0.0f;
 	_AccelerationIncrease = 0.00f;
 	CollisionIndex = 3;
-	collision_box_.setSize(sf::Vector2f{ 4.f,4.f });
+	collision_box_.setSize(sf::Vector2f{ 6.f,6.f });
 	angle_multi_ = angle_multi;
 }
 

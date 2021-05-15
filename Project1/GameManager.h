@@ -13,9 +13,10 @@
 #include "imgui-SFML.h"
 #include "PlayerGui.h"
 #include "IPlayerCharacter.h"
+#include "LevelManager.h"
 
 class Entity;
-
+class LevelManager;
 //class CollisionEntity;
 class GameManager
 {
@@ -34,6 +35,7 @@ public:
 	std::shared_ptr<AssetManager> pAssetManager;
 	std::shared_ptr<AudioManager> pAudioManager;
 	std::shared_ptr<PlayerGui> pPlayerGui;
+	std::shared_ptr<LevelManager> pLevelManager;
 	//std::shared_ptr<PlayerGui> pPlayerGui;
 	std::shared_ptr<IPlayerCharacter> current_player_character_;
 	unsigned int CurrentPlayerCharacterID;

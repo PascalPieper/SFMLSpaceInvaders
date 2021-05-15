@@ -17,7 +17,7 @@ protected:
 	//Getters
 public:
 	//void NewRun();
-	int GetSceneSize() { return (int)_scenes.size(); }
+	int GetSceneSize() { return _scenes.size(); }
 	//PlayerCharacter &GetPlayerCharacter() { return _currentPlayerCharacter; }
 
 public:

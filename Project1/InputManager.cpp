@@ -83,10 +83,6 @@ void InputManager::ProcessEventInput(const sf::Event& event) const
 				p_player_->SetShooting(false);
 				break;
 			}
-			//default:
-			//	{
-			//		break;
-			//	}
 		}
 	}
 }

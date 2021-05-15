@@ -18,6 +18,7 @@ BigFishEnemy::BigFishEnemy(sf::Vector2f SpawnPosition) : HealthEntity(SpawnPosit
 	func = &BigFishEnemy::ShootAccelerated;
 	texture_animation_offset = sf::IntRect(0, 0, 57, 70);
 	animation_sheet_width_ = 228;
+	_isOnScreen = false;
 	SetHealth(450);
 
 }
@@ -31,6 +32,21 @@ void BigFishEnemy::Start()
 void BigFishEnemy::MoveIntoScreen()
 {
 }
+
+
+void BigFishEnemy::MoveToScreenTop()
+{
+
+	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ / 5)
+	{
+		this->EntitySprite.move(0, _MovementSpeed * pGameManager->GetDeltaTime());
+	}
+	else
+	{
+		_isOnScreen = true;
+	}
+}
+
 
 void BigFishEnemy::MoveUpDown()
 {
@@ -78,13 +94,10 @@ void BigFishEnemy::Shoot()
 
 void BigFishEnemy::Update()
 {
-	
-	if (CheckCollision(4))
-	{
-		se_.FlashSprite();
-		TakeDamage(5);
-	}
-	ImGui::Begin("Big Fish");
+	se_.UpdateEffects();
+	ProgressAnimation();
+
+	ImGui::Begin("Snake Enemy");
 	if (ImGui::Button("Destroy"))
 	{
 		Destroy();
@@ -94,19 +107,33 @@ void BigFishEnemy::Update()
 	ImGui::Text("Time Elapsed = %f", _moveClock.getElapsedTime().asSeconds());
 	ImGui::SliderFloat("offset X", &bullet_spawn_offset_.x, -50, 50);
 	ImGui::SliderFloat("offset Y", &bullet_spawn_offset_.y, -50, 50);
-	MoveUpDown();
+	if (_isOnScreen)
+	{
+		if (CheckCollision(4))
+		{
+			se_.FlashSprite();
+			pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(2);
+			TakeDamage(5);
+		}
+		se_.UpdateEffects();
+		MoveUpDown();
 
-	if (_shootClock.getElapsedTime().asSeconds() > _AttackCoolDown) {
-		Shoot();
-		_shootClock.restart();
+		if (_shootClock.getElapsedTime().asSeconds() > _AttackCoolDown) {
+			Shoot();
+			_shootClock.restart();
+		}
+	}
+	else
+	{
+		MoveToScreenTop();
 	}
 
-	se_.UpdateEffects();
-	ProgressAnimation();
+
 	ImGui::End();
 }
 
 void BigFishEnemy::OnDeath()
 {
+	pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(120);
 	Destroy();
 }

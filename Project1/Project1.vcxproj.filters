@@ -161,6 +161,9 @@
     <ClCompile Include="PlayerGui.cpp">
       <Filter>Header Files\ScreenEffects</Filter>
     </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Header Files\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -288,6 +291,9 @@
     </ClInclude>
     <ClInclude Include="BarrageBullet.h">
       <Filter>Header Files\Entity Templates\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

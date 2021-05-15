@@ -159,6 +159,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOReading.cpp" />
     <ClCompile Include="Level01.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveEntity.cpp" />
     <ClCompile Include="PlayerBlock.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="CompHeader.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="SpriteEffects.h" />
     <ClInclude Include="EntityEnums.h" />
     <ClInclude Include="GameManager.h" />

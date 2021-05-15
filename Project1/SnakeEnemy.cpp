@@ -14,11 +14,13 @@ SnakeEnemy::SnakeEnemy(sf::Vector2f SpawnPosition) : HealthEntity(SpawnPosition)
 	func = &SnakeEnemy::ShootAccelerated;
 	texture_animation_offset = sf::IntRect(0, 0, 55, 52);
 	animation_sheet_width_ = 495;
+	_isOnScreen = false;
 	SetHealth(600);
 }
 
 void SnakeEnemy::OnDeath()
 {
+	pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(100);
 	Destroy();
 }
 
@@ -73,6 +75,18 @@ void SnakeEnemy::Shoot()
 	(this->*func)();
 }
 
+void SnakeEnemy::MoveToScreenTop()
+{
+
+	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ / 5)
+	{
+		this->EntitySprite.move(0, _MovementSpeed * pGameManager->GetDeltaTime());
+	}
+	else
+	{
+		_isOnScreen = true;
+	}
+}
 
 void SnakeEnemy::Update()
 {
@@ -89,18 +103,26 @@ void SnakeEnemy::Update()
 	ImGui::Text("Time Elapsed = %f", _moveClock.getElapsedTime().asSeconds());
 	ImGui::SliderFloat("offset X", &bullet_spawn_offset_.x, -50, 50);
 	ImGui::SliderFloat("offset Y", &bullet_spawn_offset_.y, -50, 50);
-	MoveUpDown();
-
-	if (_shootClock.getElapsedTime().asSeconds() > _AttackCoolDown) {
-		Shoot();
-		_shootClock.restart();
-	}
-	if (CheckCollision(4))
+	if (_isOnScreen)
 	{
-		se_.FlashSprite();
-		TakeDamage(5);
+		if (CheckCollision(4))
+		{
+			se_.FlashSprite();
+			pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(2);
+			TakeDamage(5);
+		}
+		se_.UpdateEffects();
+		MoveUpDown();
+
+		if (_shootClock.getElapsedTime().asSeconds() > _AttackCoolDown) {
+			Shoot();
+			_shootClock.restart();
+		}
 	}
-	
+	else
+	{
+		MoveToScreenTop();
+	}
 
 
 	ImGui::End();

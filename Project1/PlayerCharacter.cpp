@@ -119,7 +119,6 @@ void PlayerCharacter::Update()
 	if (blocking_ && stamina_ > 0 && !BlockCooldown)
 	{
 		ReduceStamina(STAMINA_INCREMENT * pGameManager->GetDeltaTime() * 60);
-		std::cout << pGameManager->GetDeltaTime();
 		player_block_->EnableHitBox();
 		player_block_->SetActiveAndDrawn(true);
 		player_block_->GetEntitySprite().setPosition(this->EntitySprite.getPosition() + sf::Vector2f{ 35, 0 });
@@ -156,6 +155,14 @@ void PlayerCharacter::MoveLeft()
 
 void PlayerCharacter::MoveRight()
 {
+}
+
+void PlayerCharacter::AddToPlayerScore(const int add_value)
+{
+	player_score_ += add_value;
+	std::ostringstream ssScore;
+	ssScore << "Score: " << player_score_;
+	pGameManager->pPlayerGui->paused_.setString(ssScore.str());
 }
 
 

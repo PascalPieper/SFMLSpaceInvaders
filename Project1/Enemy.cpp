@@ -15,12 +15,13 @@ Enemy::Enemy(sf::Vector2f SpawnPosition) : HealthEntity(SpawnPosition)
 	func = &Enemy::ShootAccelerated;
 	texture_animation_offset = sf::IntRect( 0,0,47, 61 );
 	animation_sheet_width_ = 564;
-	SetHealth(1000);
+	SetHealth(700);
 	_isOnScreen = false;
 }
 
 void Enemy::OnDeath()
 {
+	pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(70);
 	Destroy();
 }
 
@@ -90,6 +91,7 @@ void Enemy::Update()
 		if (CheckCollision(4))
 		{
 			se_.FlashSprite();
+			pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(2);
 			TakeDamage(5);
 		}
 		se_.UpdateEffects();
@@ -104,9 +106,6 @@ void Enemy::Update()
 	{
 		MoveToScreenTop();
 	}
-
-	
-
 
 	ImGui::End();
 }

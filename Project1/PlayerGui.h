@@ -13,6 +13,8 @@ public:
 	
 	typedef void (PlayerGui::* playergui_fptr)(sf::RenderWindow& window);
 	playergui_fptr fptr_acitve_screen_;
+
+	
 	//playergui_fptr test;
 	
 	const float BAR_MAX_SIZE = 93;
@@ -34,7 +36,9 @@ public:
 	void GamePlayScreen(sf::RenderWindow& window);
 	void GameOverScreen(sf::RenderWindow& window);
 	void GamePausedScreen(sf::RenderWindow& window);
+	
 	void ShowGui(sf::RenderWindow &window);
+	
 	void ChangeHpBar(int value);
 	void ChangeStaminaBar(float value);
 	void ReduceStaminaBar(int value);

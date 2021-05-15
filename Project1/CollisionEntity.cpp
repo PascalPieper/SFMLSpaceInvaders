@@ -7,7 +7,7 @@ CollisionEntity::CollisionEntity(sf::Vector2f SpawnPosition) : MoveEntity(SpawnP
 void CollisionEntity::RegisterEntity()
 {
 	pGameManager->RegisterToIndex(CollisionIndex, this->GetID(), pGameManager->getEntity(this->GetID()));
-	std::cout << "registered:" << pGameManager->getEntity(this->GetID());
+	//std::cout << "registered:" << pGameManager->getEntity(this->GetID());
 }
 
 void CollisionEntity::VerifyContinousCollisions()

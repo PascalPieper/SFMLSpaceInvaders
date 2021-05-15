@@ -4,6 +4,8 @@
 #include "PlayerBlock.h"
 #include "PlayerBullet.h"
 #include <iostream>
+#include <sstream>
+
 class PlayerCharacter : public HealthEntity, IPlayerCharacter
 {
 public:
@@ -29,7 +31,15 @@ public:
 
 protected:
 	bool shooting_ = false;
+	int player_score_ = 0;
 
+public:
+	int GetPlayerScore() const
+	{
+		return player_score_;
+	}
+
+	void AddToPlayerScore(const int add_value);
 
 protected:
 	sf::Clock block_cd_clock_;

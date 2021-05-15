@@ -68,17 +68,18 @@ int main()
     auto asset_manager = std::make_shared<AssetManager>();
     auto audio_manager = std::make_shared<AudioManager>();
     auto input_manager = std::make_shared<InputManager>();
- 
+    auto level_manager = std::make_shared<LevelManager>();
     auto Playergui = std::make_shared<PlayerGui>();
     
     gm->pSaveGameManager = save_game_manager;
     gm->pAssetManager = asset_manager;
     gm->pAudioManager = audio_manager;
     gm->pPlayerGui = Playergui;
+    gm->pLevelManager = level_manager;
 	
     input_manager->p_game_manager = gm;
     Playergui->p_asset_manager_ = asset_manager;
-	
+    level_manager->p_game_manager_ = gm;
     //gm->CurrentPlayerCharacterID = Player->GetID();
 
 	
@@ -148,12 +149,12 @@ int main()
         }
         if (ImGui::Button("Spawn Snake Enemy"))
         {
-            gm->CreateEntity<SnakeEnemy>(sf::Vector2f{ 300, 5 });
+            gm->CreateEntity<SnakeEnemy>(sf::Vector2f{ 300, -100 });
         }
     	
         if (ImGui::Button("Spawn Big Fish Enemy"))
         {
-            gm->CreateEntity<BigFishEnemy>(sf::Vector2f{ 300, 5 });
+            gm->CreateEntity<BigFishEnemy>(sf::Vector2f{ 300, -150 });
         }
 
         if (ImGui::Button("Reduce Healthbar"))

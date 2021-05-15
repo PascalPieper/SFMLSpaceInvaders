@@ -28,4 +28,5 @@ public:
 	void ShootBouncing();
 	void Update() override;
 	void OnDeath() override;
+	void MoveToScreenTop();
 };

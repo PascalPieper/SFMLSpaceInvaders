@@ -9,10 +9,12 @@
 class InputManager
 {
 public:
+	typedef void (InputManager::* fptr_input)();
+	fptr_input input_scheme_;
 	std::shared_ptr<PlayerCharacter> p_player_;
 	std::shared_ptr<GameManager> p_game_manager;
 	sf::Event* event_ = nullptr;
-	int button = -1;
+	//int button = -1;
 public:
 	InputManager();
 
