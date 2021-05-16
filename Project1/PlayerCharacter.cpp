@@ -28,7 +28,7 @@ void PlayerCharacter::MoveUp()
 
 void PlayerCharacter::MoveDown()
 {
-	//std::cout << this->EntitySprite.getPosition().y;
+	std::cout << this->EntitySprite.getPosition().y;
 	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ - this->EntitySprite.getTextureRect().height)
 	{
 		Move(0.f, 250.f * pGameManager->GetDeltaTime());
@@ -92,6 +92,14 @@ void PlayerCharacter::ReduceStamina(float value)
 
 void PlayerCharacter::Update()
 {
+	if (moving_up_)
+	{
+		MoveUp();
+	}
+	if (moving_down_)
+	{
+		MoveDown();
+	}
 	if (shooting_)
 	{
 		ChargeAttack();
@@ -104,6 +112,7 @@ void PlayerCharacter::Update()
 		player_block_->SetActiveAndDrawn(true);
 		player_block_->GetEntitySprite().setPosition(this->EntitySprite.getPosition() + sf::Vector2f{ 35, 0 });
 	}
+	
 	if (stamina_ < STAMINA_INCREMENT && !BlockCooldown)
 	{
 		player_block_->DisableHitBox();
@@ -116,6 +125,7 @@ void PlayerCharacter::Update()
 	{
 		BlockCooldown = false;
 	}
+	
 	if (!blocking_)
 	{
 		player_block_->DisableHitBox();

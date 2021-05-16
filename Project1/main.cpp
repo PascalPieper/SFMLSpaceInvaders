@@ -76,6 +76,7 @@ int main()
     gm->pAudioManager = audio_manager;
     gm->pPlayerGui = Playergui;
     gm->pLevelManager = level_manager;
+    gm->pInputManager = input_manager;
 	
     input_manager->p_game_manager = gm;
     level_manager->p_game_manager_ = gm;
@@ -110,7 +111,7 @@ int main()
         
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
-            input_manager->ProcessEventInput(event);
+            input_manager->CheckInput(event);
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
@@ -139,7 +140,7 @@ int main()
 #pragma endregion ImGuiDebugging
 
     	
-        input_manager->CheckInput();
+        //input_manager->CheckInput();
         ImGui::End();
         gm->Update();
         level_manager->UpdateState();

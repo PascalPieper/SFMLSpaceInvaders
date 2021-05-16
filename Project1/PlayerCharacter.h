@@ -27,10 +27,13 @@ public:
 	void MoveLeft() override;
 	void MoveRight() override;
 
-
-
 protected:
 	bool shooting_ = false;
+	bool moving_up_ = false;
+	bool moving_down_ = false;
+	bool shooting = false;
+
+protected:
 	int player_score_ = 0;
 
 public:
@@ -76,14 +79,44 @@ public:
 		return shooting_;
 	}
 
-	void SetShooting(bool shooting)
+	void SetShooting(bool is_shooting)
 	{
 
-		shooting_ = shooting;
+		shooting_ = is_shooting;
 	}
 	void SetBulletSpawnOffset(const sf::Vector2f& bullet_spawn_offset)
 	{
 		bullet_spawn_offset_ = bullet_spawn_offset;
+	}
+	
+	bool IsMovingUp() const
+	{
+		return moving_up_;
+	}
+
+	void SetMovingUp(const bool moving_up)
+	{
+		moving_up_ = moving_up;
+	}
+
+	bool IsMovingDown() const
+	{
+		return moving_down_;
+	}
+
+	void SetMovingDown(const bool moving_down)
+	{
+		moving_down_ = moving_down;
+	}
+
+	bool IsShooting1() const
+	{
+		return shooting;
+	}
+
+	void SetShooting1(bool is_shooting)
+	{
+		this->shooting = is_shooting;
 	}
 
 	

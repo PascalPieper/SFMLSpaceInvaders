@@ -13,10 +13,12 @@
 #include "PlayerGui.h"
 #include "IPlayerCharacter.h"
 #include "LevelManager.h"
+#include "InputManager.h"
 
 class Entity;
 class LevelManager;
 class PlayerGui;
+class InputManager;
 class GameManager
 {
 public:
@@ -35,8 +37,9 @@ public:
 	std::shared_ptr<AudioManager> pAudioManager;
 	std::shared_ptr<PlayerGui> pPlayerGui;
 	std::shared_ptr<LevelManager> pLevelManager;
+	
 	//std::shared_ptr<PlayerGui> pPlayerGui;
-	std::shared_ptr<IPlayerCharacter> current_player_character_;
+	std::shared_ptr<InputManager> pInputManager;
 	unsigned int CurrentPlayerCharacterID;
 
 	bool ShowCollisionBoxes = false;
