@@ -11,6 +11,7 @@ protected:
 	const std::string filepath;
 
 public:
+	
 	void ScrollRight();
 	void Update();
 

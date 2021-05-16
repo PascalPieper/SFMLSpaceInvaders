@@ -37,7 +37,7 @@ void BigFishEnemy::MoveIntoScreen()
 void BigFishEnemy::MoveToScreenTop()
 {
 
-	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ / 5)
+	if (this->EntitySprite.getPosition().y < pGameManager->screen_height_ / 8)
 	{
 		this->EntitySprite.move(0, _MovementSpeed * pGameManager->GetDeltaTime());
 	}
@@ -134,6 +134,7 @@ void BigFishEnemy::Update()
 
 void BigFishEnemy::OnDeath()
 {
+	pGameManager->pLevelManager->ChangeBossCount(-1);
 	pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(120);
 	Destroy();
 }

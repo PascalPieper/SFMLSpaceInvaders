@@ -21,6 +21,7 @@ Enemy::Enemy(sf::Vector2f SpawnPosition) : HealthEntity(SpawnPosition)
 
 void Enemy::OnDeath()
 {
+	pGameManager->pLevelManager->ChangeBossCount(-1);
 	pGameManager->GetEntityByType<PlayerCharacter>(pGameManager->current_player_id_)->AddToPlayerScore(70);
 	Destroy();
 }

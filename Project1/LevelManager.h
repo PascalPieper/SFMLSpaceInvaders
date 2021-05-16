@@ -19,22 +19,23 @@ public:
 	void GenerateRandomBoss();
 
 protected:
+	int rng_result = 1;
 	unsigned int boss_count_ = 0;
 	unsigned int mob_count_ = 0;
 	unsigned int score_ = 0;
 	sf::Clock state_clock_;
 
 	const unsigned int MAX_BOSSES = 2;
-	const float DIFFICULTY_DELAY = 90.f;
+	const float DIFFICULTY_DELAY = 50.f;
 public:
 	unsigned GetBossCount() const
 	{
 		return boss_count_;
 	}
 
-	void SetBossCount(unsigned boss_count)
+	void ChangeBossCount(unsigned boss_count)
 	{
-		boss_count_ = boss_count;
+		boss_count_ += boss_count;
 	}
 
 	unsigned GetMobCount() const

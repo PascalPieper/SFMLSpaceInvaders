@@ -1,4 +1,6 @@
 #include "PlayerGui.h"
+#include "ScrollingBackground.h"
+
 
 
 PlayerGui::PlayerGui()
@@ -16,8 +18,7 @@ PlayerGui::PlayerGui()
 	
 	bar_sprite_.setPosition(5, 8);
 
-	game_over_texture_.loadFromFile("Assets/gui/GAME_OVER.png");
-	game_over_screen_.setTexture(&game_over_texture_);
+
 
 	font_.loadFromFile("Assets/Fonts/5P5.ttf");
 
@@ -28,7 +29,40 @@ PlayerGui::PlayerGui()
 	score_text_.setString("Score: 0");
 
 	
-	SetScreenActive(&PlayerGui::GamePlayScreen);
+	SetScreenActive(&PlayerGui::GameOverScreen);
+}
+
+void PlayerGui::Start()
+{
+	//game_over_texture_.loadFromFile("Assets/gui/GAME_OVER.png");
+	CreateBackgrounds();
+	game_over_texture_.loadFromFile("Assets/gui/GAME_OVER.png");
+	game_over_screen_.setTexture(&game_over_texture_);
+	
+	bar_sprite_.setTexture(p_asset_manager_->LoadTexture("hp_bar", "assets/Gui/HP_Bar.png"));
+	
+	retry_texture_.loadFromFile("Assets/Gui/Retry_Button.png");
+	retry_button_.setTexture(&retry_texture_);
+	retry_button_.setPosition(sf::Vector2f{ 289, 175 });
+}
+
+void PlayerGui::CreateBackgrounds()
+{
+	auto Background01 =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/Night_Sky_duplicated.png", "Background01", 0);
+	auto Backgroundstar =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/Stars_duplicated.png", "BackgroundStars", 7.f);
+	auto Background02 =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/2_Clouds_duplicated.png", "Background02", 16.f);
+	auto Background03 =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/3_Mountain_duplicated.png", "Background03", 32.f);
+	auto Background04 =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/4_Dune_1_duplicated.png", "Background04", 55.f);
+	auto Background05 =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/5_Dune_2_duplicated.png", "Background05", 110.f);
+	auto Background06 =
+		p_game_manager_->CreateEntity<ScrollingBackground>(sf::Vector2f{ 0,0 }, "Assets/Background/6_Dune_3_duplicated.png", "Background06", 200.f);
+
 }
 
 void PlayerGui::ShowGameOverScreen(int score)
@@ -60,8 +94,8 @@ void PlayerGui::GamePlayScreen(sf::RenderWindow& window)
 
 void PlayerGui::GameOverScreen(sf::RenderWindow& window)
 {
-	
 	window.draw(game_over_screen_);
+	window.draw(retry_button_);
 }
 
 void PlayerGui::GamePausedScreen(sf::RenderWindow& window)
@@ -73,7 +107,7 @@ void PlayerGui::ShowGui(sf::RenderWindow &window)
 {
 	(this->*fptr_acitve_screen_)(window);
 	
-	bar_sprite_.setTexture(p_asset_manager_->LoadTexture("hp_bar", "assets/Gui/HP_Bar.png"));
+	
 
 	//window.draw(game_over_screen_);
 }

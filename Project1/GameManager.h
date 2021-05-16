@@ -1,5 +1,4 @@
 #pragma once
-
 #include <map>
 #include "Entity.h"
 #include "SaveGameManager.h"
@@ -17,6 +16,7 @@
 
 class Entity;
 class LevelManager;
+class PlayerGui;
 class GameManager
 {
 public:
